@@ -1,7 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://_fondV1.jpg" type="Texture" id=2]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/choices/Choices.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "travel"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4356 ), Vector2( 0, -1638 ) ]
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,15 +30,24 @@ __meta__ = {
 }
 
 [node name="Background" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="BG" type="TextureRect" parent="Background"]
+margin_top = -4356.0
+margin_right = 614.0
+margin_bottom = 1080.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="Anim" type="AnimationPlayer" parent="Background/BG"]
+autoplay = "travel"
+anims/travel = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 305, 700 )
 
 [node name="Choice" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="Choices" parent="Choice" instance=ExtResource( 4 )]
 
-[node name="NextTimer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-[connection signal="timeout" from="NextTimer" to="." method="_on_NextTimer_timeout"]
+[node name="HUD" type="CanvasLayer" parent="."]

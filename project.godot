@@ -18,10 +18,6 @@ _global_script_class_icons={
 config/name="Space Express"
 config/icon="res://icon.png"
 
-[autoload]
-
-Audio="*res://audio/Audio.tscn"
-
 [debug]
 
 gdscript/warnings/enable=false

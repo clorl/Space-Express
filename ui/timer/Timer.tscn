@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/timer/Timer.gd" type="Script" id=1]
+[ext_resource path="res://ui/timer/cercle_timer.png" type="Texture" id=2]
+[ext_resource path="res://ui/timer/cercle_timer_fond.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/SovietProgram.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ui/timer/encadre_timer.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 4 )
+
+[node name="Timer" type="CenterContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 442.0
+margin_bottom = 138.0
+alignment = 1
+
+[node name="Timer" type="TextureProgress" parent="HBoxContainer"]
+margin_right = 138.0
+margin_bottom = 138.0
+max_value = 2.0
+step = 0.01
+value = 0.7
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+fill_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 142.0
+margin_top = 29.0
+margin_right = 442.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "2:00"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Label"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -177.0
+margin_top = -69.0
+margin_right = 150.5
+margin_bottom = 69.0
+texture = ExtResource( 5 )

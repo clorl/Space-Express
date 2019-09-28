@@ -12,7 +12,7 @@ export var max_health = 100
 export var max_crew = 10
 
 func _ready():
-	pass
+	$Spaceship/Reactor.emitting = true
 
 
 func set_health(new_health):

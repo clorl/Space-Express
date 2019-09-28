@@ -1,6 +1,6 @@
 extends Node2D
 
-var audio = get_node("/root/Audio.tscn")
+onready var audio = get_node("/root/Audio.tscn")
 
 const events = {
 	asteroids = preload("res://events/asteroids/Asteroids.tscn")
