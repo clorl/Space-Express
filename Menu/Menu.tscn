@@ -58,10 +58,10 @@ margin_right = 543.25
 margin_bottom = 164.45
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Credits/Popup"]
-margin_left = 5.0
-margin_top = -28.0
-margin_right = 610.0
-margin_bottom = 784.0
+margin_left = 56.9285
+margin_top = -16.0165
+margin_right = 661.929
+margin_bottom = 795.984
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Credits/Popup/ScrollContainer"]
 custom_fonts/normal_font = SubResource( 2 )
