@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/asteroids.png-110ca8b2ba984e52ceb389fc39280462.stex"
+path="res://.import/icons.png-9827eb929f4621bbc321fab47b31927a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/choices/icons/asteroids.png"
-dest_files=[ "res://.import/asteroids.png-110ca8b2ba984e52ceb389fc39280462.stex" ]
+source_file="res://ui/choices/icons.png"
+dest_files=[ "res://.import/icons.png-9827eb929f4621bbc321fab47b31927a.stex" ]
 
 [params]
 

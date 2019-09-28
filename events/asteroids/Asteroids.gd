@@ -5,12 +5,16 @@ onready var asteroid = preload("res://events/asteroids/Asteroid.tscn")
 func _ready():
 	generate()
 
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		$AnimationPlayer.play("default")
+
 func generate():
-	for i in range(100):
+	for i in range(200):
 		var instance = asteroid.instance()
 		
 		# Random pos
-		instance.position = Vector2(rand_range(0,610), rand_range(0,1080))
+		instance.position = Vector2(rand_range(0,610), rand_range(0,1080*2))
 		
 		# Random scale		
 		var rnd_scale = rand_range(0.2,0.5)
