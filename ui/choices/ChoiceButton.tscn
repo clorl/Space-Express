@@ -76,6 +76,7 @@ tracks/1/keys = {
 margin_right = 241.0
 margin_bottom = 241.0
 rect_min_size = Vector2( 200, 200 )
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 1 )
 texture_hover = ExtResource( 1 )
