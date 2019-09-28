@@ -1,6 +1,6 @@
 extends Control
 onready var tween = $Tween
-var cur_crew = 100 setget update_crew
+var cur_crew = 10 setget update_crew
 onready var Crew_label = $CrewCount 
 
 func update_crew(new_value):
