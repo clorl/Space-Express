@@ -63,3 +63,4 @@ wait_time = 5.0
 one_shot = true
 [connection signal="clicked" from="VBoxContainer/HBox/LButton" to="." method="_on_Button_clicked"]
 [connection signal="clicked" from="VBoxContainer/HBox/RButton" to="." method="_on_Button_clicked"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -14,6 +14,11 @@ func _on_ChoiceButton_pressed():
 func set_event(e):
 	event = e
 	icon.frame = e
+	print(get_name(), " frame = ", e)
+
+func reset():
+	disabled = false
+	$Anim.play("idle")
 
 func _on_ChoiceButton_mouse_entered():
 	audio.play("Blip")
