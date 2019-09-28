@@ -1,7 +1,7 @@
 extends Control
 onready var tween = $Tween
-var cur_goods = 100 setget update_goods
-onready var Goods_label = $GoodsCount 
+var cur_goods = 100
+onready var Goods_label = $VBoxContainer/GoodsCount 
 
 func update_goods(new_value):
 	tween.interpolate_property(self, "cur_goods", cur_goods, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -13,6 +13,6 @@ func _ready():
 	
 func _process(delta):
 	var round_value = round(cur_goods)
-	Goods_label.text = str(round_value)
+	Goods_label.text = str(round_value) + "$"
 
 

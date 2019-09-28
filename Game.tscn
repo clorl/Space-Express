@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://_fondV1.jpg" type="Texture" id=2]
 [ext_resource path="res://BG.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/choices/Choices.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/GUI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "travel"
@@ -80,6 +81,7 @@ __meta__ = {
 }
 
 [node name="Background" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = -1
 
 [node name="Camera2D" type="Camera2D" parent="Background"]
@@ -115,6 +117,9 @@ position = Vector2( 305, 700 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="GUI" parent="HUD" instance=ExtResource( 6 )]
+mouse_filter = 2
+
 [node name="Warning" type="CanvasLayer" parent="."]
 editor/display_folded = true
 
@@ -129,4 +134,7 @@ __meta__ = {
 
 [node name="Anim" type="AnimationPlayer" parent="Warning"]
 anims/warning = SubResource( 3 )
+[connection signal="crew_changed" from="Player" to="HUD/GUI" method="_on_Player_crew_changed"]
+[connection signal="goods_changed" from="Player" to="HUD/GUI" method="_on_Player_goods_changed"]
+[connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
 [connection signal="event_selected" from="Choice/Choices" to="." method="_on_Choices_event_selected"]
