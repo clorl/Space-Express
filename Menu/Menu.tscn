@@ -3,16 +3,19 @@
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Menu/_fondV1.jpg" type="Texture" id=2]
 [ext_resource path="res://Menu/button.png" type="Texture" id=3]
-[ext_resource path="res://Menu/Credits.gd" type="Script" id=4]
-[ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://ui/SovietProgram.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Menu/titre.png" type="Texture" id=7]
+[ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Menu/titre.png" type="Texture" id=5]
+[ext_resource path="res://Menu/Xolonium-Regular.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
-font_data = ExtResource( 5 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 6 )
 
@@ -34,7 +37,6 @@ margin_top = 904.317
 margin_right = 538.0
 margin_bottom = 1016.32
 texture_normal = ExtResource( 3 )
-script = ExtResource( 4 )
 
 [node name="Label2" type="Label" parent="Credits"]
 anchor_left = 0.5
@@ -49,48 +51,6 @@ custom_fonts/font = SubResource( 1 )
 text = "CREDITS"
 align = 1
 valign = 1
-
-[node name="Popup" type="Popup" parent="Credits"]
-visible = true
-margin_left = -79.7499
-margin_top = -622.55
-margin_right = 543.25
-margin_bottom = 164.45
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Credits/Popup"]
-margin_left = 56.9285
-margin_top = -16.0165
-margin_right = 661.929
-margin_bottom = 795.984
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Credits/Popup/ScrollContainer"]
-custom_fonts/normal_font = SubResource( 2 )
-tab_size = 24
-text = "Space Express
-An open source game made for Open Jam 2019
-
-Coding
-Clément \"Topy\" Orlandini
-Antoine \"Foxy\" Couapel
-
-Art
-Emilia \"Lyrola\" Briault
-Ludovic \"BroZ\" Warin
-
-Music
-Tristan Clément
-
-Software used
-Affinity Designer (Proprietary)
-GIMP (Open Source)
-Godot (Open Source)
-SFXR (Open Source)
-LMMS (Open Source)
-Audacity (Open Source)
-
-Our game's sources are available on Github ! 
-(link on itch.io's page)
-"
 
 [node name="Play" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -124,6 +84,86 @@ margin_left = -240.242
 margin_top = 111.0
 margin_right = 301.758
 margin_bottom = 264.0
-texture = ExtResource( 7 )
+texture = ExtResource( 5 )
+
+[node name="Popup" type="Popup" parent="."]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+
+[node name="ColorRect" type="ColorRect" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0470588, 0.105882, 0.25098, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup"]
+margin_left = 5.0
+margin_top = -3.0
+margin_right = 616.0
+margin_bottom = 1071.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.941176, 0.909804, 0.439216, 1 )
+bbcode_enabled = true
+bbcode_text = "                   Space Express              
+An open source game made for  Open Jam 2019
+
+	Coding
+          Clément \"Topy\" Orlandini
+          Antoine \"Foxy\" Couapel
+
+	Art
+          Emilia \"Lyrola\" Briault
+          Ludovic \"BroZ\" Warin
+
+	Music
+                  Tristan Clément
+
+                 Software used
+     Affinity Designer (Proprietary)
+     GIMP (Open Source)
+     Godot (Open Source)
+     SFXR (Open Source)
+     LMMS (Open Source)
+     Audacity (Open Source)
+
+Our game's sources are available on Github ! 
+(link on itch.io's page)
+"
+tab_size = 24
+text = "                   Space Express              
+An open source game made for  Open Jam 2019
+
+	Coding
+          Clément \"Topy\" Orlandini
+          Antoine \"Foxy\" Couapel
+
+	Art
+          Emilia \"Lyrola\" Briault
+          Ludovic \"BroZ\" Warin
+
+	Music
+                  Tristan Clément
+
+                 Software used
+     Affinity Designer (Proprietary)
+     GIMP (Open Source)
+     Godot (Open Source)
+     SFXR (Open Source)
+     LMMS (Open Source)
+     Audacity (Open Source)
+
+Our game's sources are available on Github ! 
+(link on itch.io's page)
+"
+
+[node name="Croix" type="Button" parent="Popup"]
+margin_left = 540.608
+margin_top = 2.21667
+margin_right = 605.608
+margin_bottom = 62.2167
+custom_fonts/font = SubResource( 3 )
+text = "X"
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Popup/Croix" to="." method="_on_Croix_pressed"]
