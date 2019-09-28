@@ -9,7 +9,7 @@
 [ext_resource path="res://ui/Goods.gd" type="Script" id=7]
 [ext_resource path="res://ui/ressource_marchandise.png" type="Texture" id=8]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 55
 font_data = ExtResource( 4 )
 
@@ -41,7 +41,7 @@ margin_left = 21.3497
 margin_top = -6.26539
 margin_right = 177.35
 margin_bottom = 49.7346
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "100"
 
 [node name="Crew" type="Control" parent="."]
@@ -66,7 +66,7 @@ margin_left = 178.838
 margin_top = -62.163
 margin_right = 334.838
 margin_bottom = -6.16296
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = " 10"
 
 [node name="Goods" type="Control" parent="."]
@@ -98,5 +98,5 @@ margin_left = -63.4735
 margin_top = -60.2269
 margin_right = 137.526
 margin_bottom = -4.22693
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = " 100"
