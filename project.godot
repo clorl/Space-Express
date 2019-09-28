@@ -15,8 +15,31 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Open Game Jam 2019"
+config/name="Space Express"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/enable=false
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unassigned_variable_op_assign=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/void_assignment=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/property_used_as_function=false
+gdscript/warnings/constant_used_as_function=false
+
+[display]
+
+window/size/width=610
+window/size/height=1080
+window/size/resizable=false
+window/size/test_width=305
+window/size/test_height=540
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [rendering]
 
