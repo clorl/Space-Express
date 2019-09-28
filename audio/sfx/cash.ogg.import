@@ -2,14 +2,14 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/cash.ogg-0342d04e9df1e1116da69a336dfe55fd.oggstr"
+path="res://.import/cash.ogg-d892b110e32629a63174290565c9c78b.oggstr"
 
 [deps]
 
-source_file="res://audio/cash.ogg"
-dest_files=[ "res://.import/cash.ogg-0342d04e9df1e1116da69a336dfe55fd.oggstr" ]
+source_file="res://audio/sfx/cash.ogg"
+dest_files=[ "res://.import/cash.ogg-d892b110e32629a63174290565c9c78b.oggstr" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
