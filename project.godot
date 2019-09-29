@@ -40,7 +40,7 @@ gdscript/warnings/constant_used_as_function=false
 
 window/size/width=610
 window/size/height=1080
-window/size/resizable=false
+window/handheld/orientation="portrait"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
