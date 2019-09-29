@@ -1,11 +1,14 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://ScoreTab/Score.gd" type="Script" id=1]
-[ext_resource path="res://Menu/_fondV1.jpg" type="Texture" id=2]
+[ext_resource path="res://ui/score/Score.gd" type="Script" id=1]
+[ext_resource path="res://menu/_fondV1.jpg" type="Texture" id=2]
 [ext_resource path="res://ui/SovietProgram-Bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Menu/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://menu/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://ui/SovietProgram.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Menu/button.png" type="Texture" id=6]
+[ext_resource path="res://menu/button.png" type="Texture" id=6]
+
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 150

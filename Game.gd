@@ -6,6 +6,7 @@ var event_index = 1
 onready var audio = get_node("/root/Audio")
 onready var c = get_node("/root/Constants")
 
+onready var game_over = $HUD/GameOver
 onready var cam_anim = $Background/Camera2D/CamAnim
 onready var overlay_anim = $Warning/Anim
 onready var bg = $Background/Camera2D/BG
@@ -30,7 +31,7 @@ func _ready():
 	
 	# Start game
 	yield(get_tree().create_timer(2), "timeout")
-	choices.propose_choices(player.crew)
+	choices.propose_choices(player.crew, c.asteroids, c.pirate)
 	overlay_anim.play("warning")
 
 # Init HUD
@@ -75,7 +76,7 @@ func execute_event(e):
 		return
 		
 	event_index += 1
-	choices.propose_choices(player.crew)
+	choices.propose_choices(player.crew, c.pirate, c.asteroids)
 
 ##
 # Event functions
@@ -136,7 +137,7 @@ func cantina():
 	add_child(instance)
 	
 	# Slow down
-	bg.slow_down(0.6)
+	bg.slow_down()
 	yield(get_tree().create_timer(0.6), "timeout")
 	
 	# Land
@@ -216,10 +217,15 @@ func pirate():
 	instance.get_node("Sprite/Anim").play("speed_up")
 
 func stranded():
-	bg.slow_down()
+	bg.slow_down(0.6)
 	player.get_node("Spaceship/Reactor").emitting = false
 	player.anim.stop()
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
+	game_over.get_node("Text").text = "YOU HAVE LOST ALL YOUR CREW.\n\nYOUR SHIP IS STRANDED IN DEEP SPACE"
+	game_over.popup()
+	game_over.get_node("AnimationPlayer").play("fade_in")
 
 func dead():
-	pass
+	game_over.get_node("Text").text = "YOUR SHIP WAS TOO DAMAGED, \n\nIT WAS DESTROYED. GET REKT."
+	game_over.popup()
+	game_over.get_node("AnimationPlayer").play("fade_in")

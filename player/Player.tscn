@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/spaceship.png" type="Texture" id=2]
@@ -12,7 +12,7 @@ colors = PoolColorArray( 0.925781, 0, 0, 1, 1, 0.5625, 0, 1, 0.308594, 0.308594,
 gradient = SubResource( 1 )
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0.9884 ), 0.0, -0.3522, 0, 0, Vector2( 1, 0.0072 ), -3.58597, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.9884 ), 0.0, -0.3522, 0, 0, Vector2( 1, 0.0281 ), -1.61742, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
@@ -34,8 +34,7 @@ scale_random = 0.2
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "hurt"
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Spaceship:position")
@@ -62,8 +61,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "hurt_a_lot"
+[sub_resource type="Animation" id=9]
 length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Spaceship:position")
@@ -90,7 +88,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Spaceship:scale")
 tracks/0/interp = 2
@@ -140,7 +138,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -155,6 +153,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 2, 2 ), Vector2( -2, 2 ), Vector2( -2, -2 ), Vector2( 2, 2 ), Vector2( 0, 0 ) ]
 }
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 4.42
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 400.0
+initial_velocity_random = 0.5
+angular_velocity = 1.4013e-45
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+scale = 0.3
+scale_random = 0.2
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 2 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -178,7 +196,18 @@ texture = ExtResource( 3 )
 [node name="Anim" type="AnimationPlayer" parent="."]
 autoplay = "rumble"
 playback_speed = 2.0
-anims/hurt = SubResource( 6 )
-anims/hurt_a_lot = SubResource( 7 )
-anims/land = SubResource( 8 )
-anims/rumble = SubResource( 9 )
+anims/hurt = SubResource( 8 )
+anims/hurt_a_lot = SubResource( 9 )
+anims/land = SubResource( 10 )
+anims/rumble = SubResource( 11 )
+
+[node name="Explosion" type="Particles2D" parent="."]
+position = Vector2( -2.68777, 4.05856 )
+rotation = 1.5708
+emitting = false
+amount = 300
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.82
+process_material = SubResource( 7 )
+texture = ExtResource( 3 )

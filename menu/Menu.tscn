@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Menu/aaaa.wav" type="AudioStream" id=2]
-[ext_resource path="res://Menu/_fondV1.jpg" type="Texture" id=3]
+[ext_resource path="res://menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://menu/aaaa.wav" type="AudioStream" id=2]
+[ext_resource path="res://menu/_fondV1.jpg" type="Texture" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Menu/button.png" type="Texture" id=5]
+[ext_resource path="res://menu/button.png" type="Texture" id=5]
 [ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Menu/titre.png" type="Texture" id=7]
+[ext_resource path="res://menu/titre.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://Menu/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://menu/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -47,7 +47,7 @@ tracks/0/keys = {
 "values": [ Vector2( 71, 1099 ), Vector2( 80, 749.881 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 2
@@ -73,11 +73,11 @@ tracks/1/keys = {
 "values": [ Vector2( 1.3, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=6]
 size = 60
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 9 )
 
@@ -172,7 +172,7 @@ texture = ExtResource( 7 )
 
 [node name="Titre" type="AnimationPlayer" parent="Titre2"]
 autoplay = "Titre"
-anims/Titre = SubResource( 7 )
+anims/Titre = SubResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -198,7 +198,7 @@ margin_left = -97.0
 margin_top = 18.0
 margin_right = -15.0
 margin_bottom = 107.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 text = "X"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Popup2"]
@@ -210,7 +210,7 @@ margin_left = -275.0
 margin_top = -375.0
 margin_right = 275.0
 margin_bottom = 374.0
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 7 )
 custom_colors/default_color = Color( 0.941176, 0.909804, 0.439216, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]
