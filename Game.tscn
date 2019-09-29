@@ -107,7 +107,6 @@ __meta__ = {
 }
 
 [node name="Background" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -1
 
 [node name="Camera2D" type="Camera2D" parent="Background"]
@@ -150,7 +149,7 @@ margin_top = -50.0
 margin_bottom = 1034.0
 mouse_filter = 2
 
-[node name="Stranded" type="Popup" parent="HUD"]
+[node name="GameOver" type="Popup" parent="HUD"]
 modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
@@ -158,13 +157,13 @@ anchor_bottom = 1.0
 mouse_filter = 2
 popup_exclusive = true
 
-[node name="ColorRect" type="ColorRect" parent="HUD/Stranded"]
+[node name="ColorRect" type="ColorRect" parent="HUD/GameOver"]
 margin_right = 614.0
 margin_bottom = 1080.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.780392 )
 
-[node name="Label" type="Label" parent="HUD/Stranded"]
+[node name="Text" type="Label" parent="HUD/GameOver"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -180,7 +179,7 @@ YOUR SHIP IS STRANDED IN DEEP SPACE"
 align = 1
 autowrap = true
 
-[node name="Label2" type="Label" parent="HUD/Stranded"]
+[node name="Label2" type="Label" parent="HUD/GameOver"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -194,10 +193,10 @@ text = "gAME OVER"
 align = 1
 autowrap = true
 
-[node name="GameOverMenu" parent="HUD/Stranded" instance=ExtResource( 9 )]
+[node name="GameOverMenu" parent="HUD/GameOver" instance=ExtResource( 9 )]
 mouse_default_cursor_shape = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Stranded"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/GameOver"]
 anims/fade_in = SubResource( 6 )
 
 [node name="Warning" type="CanvasLayer" parent="."]

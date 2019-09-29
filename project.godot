@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space Express"
-run/main_scene="res://Menu/logo.tscn"
+run/main_scene="res://menu/logo.tscn"
 config/icon="res://icon.png"
 
 [autoload]

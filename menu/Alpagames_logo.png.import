@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/button.png-aa0fb42ae8d4a98d975e50d89297e333.stex"
+path="res://.import/Alpagames_logo.png-f0711079cc102ea732f1299b23caa78b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/button.png"
-dest_files=[ "res://.import/button.png-aa0fb42ae8d4a98d975e50d89297e333.stex" ]
+source_file="res://menu/Alpagames_logo.png"
+dest_files=[ "res://.import/Alpagames_logo.png-f0711079cc102ea732f1299b23caa78b.stex" ]
 
 [params]
 

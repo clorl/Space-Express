@@ -50,4 +50,7 @@ func set_crew(new_crew):
 	emit_signal("crew_changed", crew)
 
 func die():
+	is_dead = true
+	$Spaceship.visible = false
+	$Explosion.emitting = true
 	audio.play("Explode")

@@ -6,4 +6,4 @@ func _ready():
 	pass
 
 func _on_logo_animation_finished(anim_name):
-	get_tree().change_scene("res://Menu/Menu.tscn")
+	get_tree().change_scene("res://menu/Menu.tscn")

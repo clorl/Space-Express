@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/gui/GameOverMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/button.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://ui/button_click.png" type="Texture" id=3]
+[ext_resource path="res://ui/button_survol.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
-font_data = ExtResource( 3 )
+font_data = ExtResource( 5 )
 
 [node name="GameOverMenu" type="VBoxContainer"]
 anchor_top = 1.0
@@ -25,6 +27,8 @@ margin_left = 80.0
 margin_right = 530.0
 margin_bottom = 112.0
 texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
 
 [node name="Label3" type="Label" parent="CenterContainer/Restart"]
 margin_left = -25.0
@@ -48,6 +52,8 @@ margin_left = 80.0
 margin_right = 530.0
 margin_bottom = 112.0
 texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
 
 [node name="Label4" type="Label" parent="CenterContainer2/Menu"]
 margin_left = -25.0
@@ -60,5 +66,7 @@ text = "MENU"
 align = 1
 valign = 1
 autowrap = true
+[connection signal="mouse_entered" from="CenterContainer/Restart" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="mouse_entered" from="CenterContainer2/Menu" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="CenterContainer2/Menu" to="." method="_on_Menu_pressed"]

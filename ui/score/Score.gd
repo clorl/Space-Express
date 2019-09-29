@@ -28,4 +28,4 @@ func _on_Play_pressed():
 
 
 func _on_Menu_pressed():
-	change_scene("res://Menu/Menu.tscn")
+	change_scene("res://menu/Menu.tscn")
