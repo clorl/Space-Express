@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/kabam.wav-a34c9e4ae5972008ecbbd97a80da3b5d.sample"
+
+[deps]
+
+source_file="res://Menu/kabam.wav"
+dest_files=[ "res://.import/kabam.wav-a34c9e4ae5972008ecbbd97a80da3b5d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
