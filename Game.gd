@@ -77,7 +77,7 @@ func execute_event(e):
 		return
 		
 	event_index += 1
-	choices.propose_choices(player.crew, c.treasure, c.treasure)
+	choices.propose_choices(player.crew)
 
 ##
 # Event functions
