@@ -1,18 +1,20 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://menu/aaaa.wav" type="AudioStream" id=2]
 [ext_resource path="res://menu/_fondV1.jpg" type="Texture" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menu/button.png" type="Texture" id=5]
-[ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://menu/titre.png" type="Texture" id=7]
-[ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://menu/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://ui/button_click.png" type="Texture" id=6]
+[ext_resource path="res://ui/button_survol.png" type="Texture" id=7]
+[ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://menu/titre.png" type="Texture" id=9]
+[ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://menu/Xolonium-Regular.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
-font_data = ExtResource( 6 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Credits"
@@ -75,11 +77,11 @@ tracks/1/keys = {
 
 [sub_resource type="DynamicFont" id=6]
 size = 60
-font_data = ExtResource( 8 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
-font_data = ExtResource( 9 )
+font_data = ExtResource( 11 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -107,6 +109,8 @@ margin_top = 904.317
 margin_right = 538.0
 margin_bottom = 1016.32
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 
 [node name="Label2" type="Label" parent="Credits"]
 anchor_left = 0.5
@@ -128,7 +132,6 @@ playback_speed = 2.0
 anims/Credits = SubResource( 2 )
 
 [node name="Play" type="TextureButton" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -138,6 +141,8 @@ margin_top = -330.119
 margin_right = 231.0
 margin_bottom = -215.119
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="Play"]
 anchor_left = 0.5
@@ -160,7 +165,6 @@ playback_speed = 2.0
 anims/Play = SubResource( 4 )
 
 [node name="Titre2" type="TextureRect" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -249.542
@@ -168,7 +172,7 @@ margin_top = 121.511
 margin_right = 350.458
 margin_bottom = 274.511
 mouse_filter = 2
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="Titre" type="AnimationPlayer" parent="Titre2"]
 autoplay = "Titre"
@@ -248,7 +252,9 @@ Music
 Tristan Clément
 
 "
+[connection signal="mouse_entered" from="Credits" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
+[connection signal="mouse_entered" from="Play" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
-[connection signal="animation_started" from="Titre2/Titre" to="." method="_on_Titre_animation_started"]
+[connection signal="animation_finished" from="Titre2/Titre" to="." method="_on_Titre_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Popup2/Croix" to="." method="_on_Croix_pressed"]

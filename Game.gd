@@ -31,7 +31,7 @@ func _ready():
 	
 	# Start game
 	yield(get_tree().create_timer(2), "timeout")
-	choices.propose_choices(player.crew, c.asteroids, c.pirate)
+	choices.propose_choices(player.crew)
 	overlay_anim.play("warning")
 
 # Init HUD
@@ -76,7 +76,7 @@ func execute_event(e):
 		return
 		
 	event_index += 1
-	choices.propose_choices(player.crew, c.pirate, c.asteroids)
+	choices.propose_choices(player.crew, c.contraband, c.contraband)
 
 ##
 # Event functions
@@ -114,6 +114,7 @@ func contraband():
 	# Player gets repaired
 	audio.play("Repair")
 	player.health -= int(rand_range(5,30))
+	if player.is_dead: return
 	
 	# Player gets money
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -144,12 +145,13 @@ func cantina():
 	player.anim.play("land")
 	yield(get_tree().create_timer(0.4), "timeout")
 	
-	audio.play_pitch("Cash", 0.5)
-	player.goods -= int(rand_range(50,500))
-	player.crew += int(rand_range(0,4))
+	if player.goods > 0:
+		audio.play_pitch("Cash", 0.5)
+		player.goods -= int(rand_range(50,500))
+		player.crew += int(rand_range(0,4))
+		yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player takeoff
-	yield(get_tree().create_timer(0.5), "timeout")
 	player.anim.play_backwards("land")
 	yield(get_tree().create_timer(0.3), "timeout")
 	

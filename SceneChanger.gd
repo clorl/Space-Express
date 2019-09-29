@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal scene_changed
 
+onready var audio = get_node("/root/Audio")
 onready var animation_player = $Anim
 onready var black = $ColorRect
 
@@ -12,6 +13,7 @@ func change_scene(path, delay = 1):
 	yield(get_tree().create_timer(delay), "timeout")
 	animation_player.play("fade")
 	yield(animation_player, "animation_finished")
+	audio.stop_all()
 	get_tree().change_scene(path)
 	animation_player.play_backwards("fade")
 	yield(animation_player, "animation_finished")

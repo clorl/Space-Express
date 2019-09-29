@@ -16,3 +16,7 @@ func play_pitch(sound, pitch):
 	assert(node)
 	node.pitch_scale = pitch
 	node.play()
+
+func stop_all():
+	for child in get_children():
+		child.stop()
