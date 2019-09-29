@@ -60,15 +60,15 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 20, 20 ), Vector2( -20, -20 ), Vector2( 20, -20 ), Vector2( -20, 20 ), Vector2( 20, 20 ), Vector2( -20, -20 ), Vector2( 20, -20 ), Vector2( -20, 20 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=5]
 size = 60
 font_data = ExtResource( 8 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "fade_in"
 length = 0.5
 tracks/0/type = "value"
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
 length = 1.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
@@ -149,12 +149,13 @@ margin_top = -50.0
 margin_bottom = 1034.0
 mouse_filter = 2
 
-[node name="Stranded" type="Control" parent="HUD"]
+[node name="Stranded" type="Popup" parent="HUD"]
 modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+popup_exclusive = true
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Stranded"]
 margin_right = 614.0
@@ -171,7 +172,7 @@ margin_left = -241.0
 margin_top = -290.0
 margin_right = 241.0
 margin_bottom = -123.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "YOU HAVE LOST ALL YOUR CREW. 
 
 YOUR SHIP IS STRANDED IN DEEP SPACE"
@@ -187,16 +188,16 @@ margin_left = -241.0
 margin_top = -83.5
 margin_right = 241.0
 margin_bottom = 83.5
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "gAME OVER"
 align = 1
 autowrap = true
 
 [node name="GameOverMenu" parent="HUD/Stranded" instance=ExtResource( 9 )]
-mouse_filter = 2
+mouse_default_cursor_shape = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Stranded"]
-anims/fade_in = SubResource( 7 )
+anims/fade_in = SubResource( 6 )
 
 [node name="Warning" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -211,7 +212,7 @@ __meta__ = {
 }
 
 [node name="Anim" type="AnimationPlayer" parent="Warning"]
-anims/warning = SubResource( 4 )
+anims/warning = SubResource( 7 )
 [connection signal="crew_changed" from="Player" to="HUD/GUI" method="_on_Player_crew_changed"]
 [connection signal="goods_changed" from="Player" to="HUD/GUI" method="_on_Player_goods_changed"]
 [connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
