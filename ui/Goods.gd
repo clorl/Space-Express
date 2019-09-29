@@ -10,9 +10,9 @@ func update_goods(new_value):
 	if not tween.is_active():
     tween.start()
 	
-	if new_value >= cur_goods:
+	if new_value > cur_goods:
 		anim.play("gain")
-	else:
+	elif new_value < cur_goods:
 		anim.play("lose")
 
 func _ready():

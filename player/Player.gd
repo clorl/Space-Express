@@ -38,5 +38,5 @@ func set_goods(new_goods):
 	
 func set_crew(new_crew):
 	crew = new_crew
-	crew = clamp(goods, 0, max_crew)
+	crew = clamp(crew, 0, max_crew)
 	emit_signal("crew_changed", crew)

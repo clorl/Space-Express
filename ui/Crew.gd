@@ -9,9 +9,9 @@ func update_crew(new_value):
 	if not tween.is_active():
     tween.start()
 	
-	if new_value >= cur_crew:
+	if new_value > cur_crew:
 		anim.play("gain")
-	else:
+	elif new_value < cur_crew:
 		anim.play("lose")
 
 func _ready():

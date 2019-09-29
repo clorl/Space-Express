@@ -9,9 +9,9 @@ func update_health(new_value):
 	if not tween.is_active():
     tween.start()
 	
-	if new_value >= cur_health:
+	if new_value > cur_health:
 		anim.play("gain")
-	else:
+	elif new_value < cur_health:
 		anim.play("lose")
 
 func _ready():

@@ -18,7 +18,8 @@ const nodes = {
 	"asteroids": preload("res://events/asteroids/Asteroids.tscn"),
 	"contraband": preload("res://events/contraband/Contraband.tscn"),
 	"cantina": preload("res://events/cantina/Cantina.tscn"),
-	"repair": preload("res://events/repair/Repair.tscn")
+	"repair": preload("res://events/repair/Repair.tscn"),
+	"pirate": preload("res://events/pirate/Pirate.tscn")
 	}
 
 func _ready():
@@ -28,7 +29,7 @@ func _ready():
 	
 	# Start game
 	yield(get_tree().create_timer(2), "timeout")
-	choices.propose_choices(10, c.cantina, c.repair)
+	choices.propose_choices(10, c.cantina, c.pirate)
 	overlay_anim.play("warning")
 
 # Init HUD
@@ -51,7 +52,7 @@ func execute_event(e):
 		c.cantina:
 			cantina()
 		c.pirate:
-			pass
+			pirate()
 		c.contraband:
 			contraband()
 		c.repair:
@@ -63,7 +64,7 @@ func execute_event(e):
 		return
 	event_index += 1
 	
-	choices.propose_choices(player.crew)
+	choices.propose_choices(player.crew, c.pirate, c.pirate)
 
 ##
 # Event functions
@@ -178,3 +179,27 @@ func repair():
 	# Speed up
 	bg.speed_up(0.5)
 	instance.get_node("Sprite/Anim").play("speed_up")
+
+func pirate():
+	# Add instance
+	var instance = nodes.pirate.instance()
+	instance.global_position = Vector2(0,0)
+	instance.z_index = -1
+	add_child(instance)
+	
+	# Slow down
+	yield(get_tree().create_timer(0.6), "timeout")
+	
+	# Land
+	yield(get_tree().create_timer(0.4), "timeout")
+	
+	# Get pirated
+	audio.play("Pirate")
+	player.anim.play("hurt")
+	randomize()
+	player.goods -= int(rand_range(50,500))
+	player.crew -= int(rand_range(0,4))
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	# Get outta here
+	instance.get_node("Sprite/Anim").play("speed_up")	
