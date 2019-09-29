@@ -73,10 +73,11 @@ func execute_event(e):
 		return
 	# If game is finished
 	if event_index == event_number:
+		dead()
 		return
 		
 	event_index += 1
-	choices.propose_choices(player.crew, c.contraband, c.contraband)
+	choices.propose_choices(player.crew)
 
 ##
 # Event functions
@@ -138,7 +139,7 @@ func cantina():
 	add_child(instance)
 	
 	# Slow down
-	bg.slow_down()
+	bg.slow_down(0.6)
 	yield(get_tree().create_timer(0.6), "timeout")
 	
 	# Land

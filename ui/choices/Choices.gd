@@ -21,8 +21,8 @@ func _process(delta):
 func propose_choices(t, e1=false, e2=false):
 	reset()
 	if !e1 || !e2:
-		e1 = randi()%c.nb_events
-		e2 = randi()%c.nb_events
+		e1 = randi()%c.nb_events-1
+		e2 = randi()%c.nb_events-1
 	set_events(e1, e2)
 	
 	set_time(t)
