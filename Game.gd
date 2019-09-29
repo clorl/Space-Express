@@ -73,10 +73,11 @@ func execute_event(e):
 		return
 	# If game is finished
 	if event_index == event_number:
+		dead()
 		return
 		
 	event_index += 1
-	choices.propose_choices(player.crew, c.contraband, c.contraband)
+	choices.propose_choices(player.crew)
 
 ##
 # Event functions
