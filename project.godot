@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space Express"
+run/main_scene="res://Menu/logo.tscn"
 config/icon="res://icon.png"
 
 [debug]
