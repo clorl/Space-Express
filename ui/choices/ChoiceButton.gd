@@ -2,6 +2,7 @@ extends TextureButton
 
 onready var audio = get_node("/root/Audio")
 onready var icon = $Sprite
+onready var indicator = $Sprite/Indicators
 
 signal clicked
 var event setget set_event
@@ -15,7 +16,10 @@ func set_event(e):
 	event = e
 	
 	icon.frame = e
-	if e == 6: icon.frame = 0
+	if e == 6: 
+		icon.frame = 0
+		
+	indicator.frame = icon.frame
 
 func reset():
 	disabled = false

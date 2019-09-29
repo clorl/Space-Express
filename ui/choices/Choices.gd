@@ -52,7 +52,9 @@ func reset():
 	l_button.reset()
 
 func set_time(value):
-	timer.wait_time = value
+	if value > 0:
+		timer.wait_time = value
+	else: timer.wait_time = 1
 	display_timer.max_value = value
 
 func set_events (evt1, evt2):

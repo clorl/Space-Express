@@ -24,19 +24,20 @@ const nodes = {
 
 func _ready():
 	# Init stuff
+	randomize()
 	audio.play("GameMusic")
 	init_gui()
 	
 	# Start game
 	yield(get_tree().create_timer(2), "timeout")
-	choices.propose_choices(10, c.cantina, c.pirate)
+	choices.propose_choices(player.crew)
 	overlay_anim.play("warning")
 
 # Init HUD
 func init_gui():
-	gui._on_Player_goods_changed(player.goods)
-	gui._on_Player_crew_changed(player.crew)
-	gui._on_Player_health_changed(player.health)
+	gui._on_Player_goods_changed(player.goods, false)
+	gui._on_Player_crew_changed(player.crew, false)
+	gui._on_Player_health_changed(player.health, false)
 
 # When choice has been made
 func _on_Choices_event_selected(event):
@@ -46,7 +47,8 @@ func _on_Choices_event_selected(event):
 func execute_event(e):
 	match e:
 		c.unknown:
-			execute_event(randi()%6+1)
+			randomize()
+			execute_event(int(rand_range(1,5)))
 		c.asteroids:
 			asteroids()
 		c.cantina:
@@ -60,11 +62,20 @@ func execute_event(e):
 		c.nothing:
 			pass
 	yield(get_tree().create_timer(2), "timeout")
+	
+	# if player dead or stranded
+	if player.is_stranded:
+		stranded()
+		return
+	if player.is_dead:
+		dead()
+		return
+	# If game is finished
 	if event_index == event_number:
 		return
+		
 	event_index += 1
-	
-	choices.propose_choices(player.crew, c.pirate, c.pirate)
+	choices.propose_choices(player.crew)
 
 ##
 # Event functions
@@ -202,4 +213,13 @@ func pirate():
 	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Get outta here
-	instance.get_node("Sprite/Anim").play("speed_up")	
+	instance.get_node("Sprite/Anim").play("speed_up")
+
+func stranded():
+	bg.slow_down()
+	player.get_node("Spaceship/Reactor").emitting = false
+	player.anim.stop()
+	yield(get_tree().create_timer(2), "timeout")
+
+func dead():
+	pass

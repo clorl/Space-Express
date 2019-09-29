@@ -8,9 +8,12 @@ signal crew_changed
 
 onready var anim = $Anim
 
-var health = 50 setget set_health
-var goods = 3000 setget set_goods
-var crew = 5 setget set_crew
+var health = 100 setget set_health
+var goods = 1000 setget set_goods
+var crew = 10 setget set_crew
+
+var is_dead = false
+var is_stranded = false
 
 export var max_goods = 9999
 export var max_crew = 10
@@ -27,7 +30,8 @@ func set_health(new_health):
 	health = new_health
 	health = clamp(health, 0, 100)
 	
-
+	if health == 0:
+		die()
 	
 	emit_signal("health_changed", health)
 	
@@ -39,4 +43,11 @@ func set_goods(new_goods):
 func set_crew(new_crew):
 	crew = new_crew
 	crew = clamp(crew, 0, max_crew)
+	
+	if crew == 0:
+		is_stranded = true
+	
 	emit_signal("crew_changed", crew)
+
+func die():
+	audio.play("Explode")
