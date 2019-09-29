@@ -1,7 +1,7 @@
 extends Control
 onready var tween = $Tween
 var cur_goods = 100
-onready var Goods_label = $VBoxContainer/GoodsCount 
+onready var Goods_label = $TextureRect/GoodsCount 
 
 func update_goods(new_value):
 	tween.interpolate_property(self, "cur_goods", cur_goods, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)

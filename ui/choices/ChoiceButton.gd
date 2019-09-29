@@ -13,8 +13,9 @@ func _on_ChoiceButton_pressed():
 
 func set_event(e):
 	event = e
+	
 	icon.frame = e
-	print(get_name(), " frame = ", e)
+	if e == 6: icon.frame = 0
 
 func reset():
 	disabled = false

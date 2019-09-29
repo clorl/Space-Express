@@ -22,14 +22,11 @@ margin_right = 112.0
 margin_bottom = 10.0
 
 [node name="Goods" parent="." instance=ExtResource( 3 )]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -56.0
-margin_top = -160.0
-margin_right = 56.0
-margin_bottom = 10.0
+margin_left = -58.5
+margin_top = -174.0
+margin_right = 58.5
+margin_bottom = -20.0
+rect_pivot_offset = Vector2( 56, 0 )
 
 [node name="Crew" parent="." instance=ExtResource( 4 )]
 anchor_left = 1.0
@@ -37,6 +34,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -110.0
-margin_top = -160.0
+margin_top = -174.0
 margin_right = 0.0
-margin_bottom = 10.0
+margin_bottom = -4.0

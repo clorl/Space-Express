@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://audio/Audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/sfx/blip.ogg" type="AudioStream" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://audio/sfx/repair.ogg" type="AudioStream" id=8]
 [ext_resource path="res://audio/sfx/select.ogg" type="AudioStream" id=9]
 [ext_resource path="res://audio/sfx/warning.ogg" type="AudioStream" id=10]
+[ext_resource path="res://audio/space_speed.ogg" type="AudioStream" id=11]
 
 [node name="Audio" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,3 +50,7 @@ bus = "SFX"
 [node name="Warning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 bus = "SFX"
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+bus = "Music"

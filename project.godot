@@ -20,8 +20,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Audio="*res://audio/Audio.tscn"
 Constants="*res://Constants.tscn"
+Audio="*res://audio/Audio.tscn"
 
 [debug]
 

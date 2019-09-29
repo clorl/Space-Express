@@ -61,7 +61,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 resource_name = "hurt_a_lot"
 length = 2.1
 tracks/0/type = "value"
@@ -89,8 +89,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "land"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Spaceship:scale")
 tracks/0/interp = 2
@@ -140,7 +139,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -179,6 +178,6 @@ texture = ExtResource( 3 )
 autoplay = "rumble"
 playback_speed = 2.0
 anims/hurt = SubResource( 6 )
-anims/hurt_a_lot = SubResource( 9 )
-anims/land = SubResource( 7 )
-anims/rumble = SubResource( 8 )
+anims/hurt_a_lot = SubResource( 7 )
+anims/land = SubResource( 8 )
+anims/rumble = SubResource( 9 )

@@ -41,7 +41,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -4356 ), Vector2( 0, -1638 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "screenshake"
 length = 0.9
 tracks/0/type = "value"
@@ -57,8 +57,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 20, 20 ), Vector2( -20, -20 ), Vector2( 20, -20 ), Vector2( -20, 20 ), Vector2( 20, 20 ), Vector2( -20, -20 ), Vector2( 20, -20 ), Vector2( -20, 20 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "warning"
+[sub_resource type="Animation" id=4]
 length = 1.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
@@ -106,7 +105,7 @@ anims/traver_faster = SubResource( 2 )
 
 [node name="CamAnim" type="AnimationPlayer" parent="Background/Camera2D"]
 playback_speed = 3.0
-anims/screenshake = SubResource( 4 )
+anims/screenshake = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 305, 700 )
@@ -117,10 +116,6 @@ editor/display_folded = true
 [node name="Choices" parent="Choice" instance=ExtResource( 5 )]
 
 [node name="HUD" type="CanvasLayer" parent="."]
-editor/display_folded = true
-
-[node name="GUI" parent="HUD" instance=ExtResource( 6 )]
-mouse_filter = 2
 
 [node name="GUI" parent="HUD" instance=ExtResource( 6 )]
 mouse_filter = 2
@@ -138,7 +133,7 @@ __meta__ = {
 }
 
 [node name="Anim" type="AnimationPlayer" parent="Warning"]
-anims/warning = SubResource( 3 )
+anims/warning = SubResource( 4 )
 [connection signal="crew_changed" from="Player" to="HUD/GUI" method="_on_Player_crew_changed"]
 [connection signal="goods_changed" from="Player" to="HUD/GUI" method="_on_Player_goods_changed"]
 [connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]

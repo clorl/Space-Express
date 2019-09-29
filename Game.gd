@@ -10,6 +10,7 @@ onready var cam_anim = $Background/Camera2D/CamAnim
 onready var overlay_anim = $Warning/Anim
 onready var bg = $Background/Camera2D/BG
 
+onready var gui = $HUD/GUI
 onready var choices = $Choice/Choices
 onready var player = $Player
 
@@ -18,9 +19,18 @@ const nodes = {
 	}
 
 func _ready():
+	# Init stuff
+	audio.play("GameMusic")
+	init_gui()
+	
+	# Start game
 	yield(get_tree().create_timer(2), "timeout")
 	choices.propose_choices(10, c.asteroids, c.contraband)
 	overlay_anim.play("warning")
+
+# Init HUD
+func init_gui():
+	gui._on_Player_goods_changed(player.goods)
 
 # When choice has been made
 func _on_Choices_event_selected(event):
