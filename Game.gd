@@ -1,6 +1,6 @@
 extends Node2D
 
-export var event_number = 20
+export var event_number = 15
 var event_index = 1
 
 onready var audio = get_node("/root/Audio")
@@ -49,7 +49,7 @@ func execute_event(e):
 	match e:
 		c.unknown:
 			randomize()
-			execute_event(int(rand_range(1,5)))
+			execute_event(int(rand_range(1,c.nb_events-2)))
 		c.asteroids:
 			asteroids()
 		c.cantina:
@@ -62,6 +62,8 @@ func execute_event(e):
 			repair()
 		c.nothing:
 			pass
+		_:
+			pass
 	yield(get_tree().create_timer(2), "timeout")
 	
 	# if player dead or stranded
@@ -73,7 +75,7 @@ func execute_event(e):
 		return
 	# If game is finished
 	if event_index == event_number:
-		dead()
+		end()
 		return
 		
 	event_index += 1
@@ -232,3 +234,9 @@ func dead():
 	game_over.get_node("Text").text = "YOUR SHIP WAS TOO DAMAGED, \n\nIT WAS DESTROYED. GET REKT."
 	game_over.popup()
 	game_over.get_node("AnimationPlayer").play("fade_in")
+
+func end():
+	var score = $HUD/Score 
+	score.popup()
+	score.get_node("Anim").play("fade")
+	score.get_node("Score").set_score(player.goods)
