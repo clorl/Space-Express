@@ -1,12 +1,19 @@
 extends Control
 onready var tween = $Tween
-var cur_goods = 100
 onready var Goods_label = $TextureRect/GoodsCount 
+onready var anim = $TextureRect/GoodsCount/Anim
+var cur_goods = 100
+
 
 func update_goods(new_value):
 	tween.interpolate_property(self, "cur_goods", cur_goods, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
     tween.start()
+	
+	if new_value >= cur_goods:
+		anim.play("gain")
+	else:
+		anim.play("lose")
 
 func _ready():
 	pass

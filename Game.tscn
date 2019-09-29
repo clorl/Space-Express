@@ -80,10 +80,10 @@ __meta__ = {
 }
 
 [node name="Background" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -1
 
 [node name="Camera2D" type="Camera2D" parent="Background"]
+z_index = -2
 anchor_mode = 0
 current = true
 
@@ -118,6 +118,8 @@ editor/display_folded = true
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="HUD" instance=ExtResource( 6 )]
+margin_top = -50.0
+margin_bottom = 1034.0
 mouse_filter = 2
 
 [node name="Warning" type="CanvasLayer" parent="."]
