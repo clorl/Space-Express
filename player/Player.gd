@@ -8,11 +8,11 @@ signal crew_changed
 
 onready var anim = $Anim
 
-var health = 100 setget set_health
+var health = 50 setget set_health
 var goods = 3000 setget set_goods
-var crew = 10 setget set_crew
+var crew = 5 setget set_crew
 
-export var max_health = 100
+export var max_goods = 9999
 export var max_crew = 10
 
 func _ready():
@@ -20,17 +20,23 @@ func _ready():
 
 
 func set_health(new_health):
+	if new_health < health:
+		anim.play("hurt")
+		audio.play("Hurt")
+		
 	health = new_health
+	health = clamp(health, 0, 100)
 	
-	anim.play("hurt")
-	audio.play("Hurt")
+
 	
 	emit_signal("health_changed", health)
 	
 func set_goods(new_goods):
 	goods = new_goods
+	goods = clamp(goods, 0, max_goods)
 	emit_signal("goods_changed", goods)
 	
 func set_crew(new_crew):
 	crew = new_crew
+	crew = clamp(goods, 0, max_crew)
 	emit_signal("crew_changed", crew)
