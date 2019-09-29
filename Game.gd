@@ -20,7 +20,10 @@ const nodes = {
 	"contraband": preload("res://events/contraband/Contraband.tscn"),
 	"cantina": preload("res://events/cantina/Cantina.tscn"),
 	"repair": preload("res://events/repair/Repair.tscn"),
-	"pirate": preload("res://events/pirate/Pirate.tscn")
+	"pirate": preload("res://events/pirate/Pirate.tscn"),
+	"cloud": preload("res://events/cloud/Cloud.tscn"),
+	"graveyard": preload("res://events/graveyard/Graveyard.tscn"),
+	"treasure": preload("res://events/treasure/Treasure.tscn")
 	}
 
 func _ready():
@@ -221,7 +224,7 @@ func pirate():
 
 func graveyard():
 	# Add instance
-	var instance = nodes.contraband.instance()
+	var instance = nodes.graveyard.instance()
 	instance.global_position = Vector2(0,0)
 	instance.z_index = -1
 	add_child(instance)
@@ -296,13 +299,22 @@ func sos():
 	instance.get_node("Sprite/Anim").play("speed_up")
 
 func cloud():
+	# Add asteroids
+	var instance = nodes.asteroids.instance()
+	instance.global_position = Vector2(0,0)
+	add_child(instance)
+	
+	yield(get_tree().create_timer(0.5), "timeout")
 	randomize()
 	audio.play("Cough"+String(randi()%3+1))
 	player.crew -= randi()%4
+	
+	yield(get_tree().create_timer(3), "timeout")
+	instance.queue_free()
 
 func treasure():
 	# Add instance
-	var instance = nodes.contraband.instance()
+	var instance = nodes.treasure.instance()
 	instance.global_position = Vector2(0,0)
 	instance.z_index = -1
 	add_child(instance)
