@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://_fondV1.jpg" type="Texture" id=2]
+[ext_resource path="res://BG.gd" type="Script" id=3]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/choices/Choices.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/GUI.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "travel"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4356 ), Vector2( 0, -1638 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "traver_faster"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4356 ), Vector2( 0, -1638 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "screenshake"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 20, 20 ), Vector2( -20, -20 ), Vector2( 20, -20 ), Vector2( -20, 20 ), Vector2( 20, 20 ), Vector2( -20, -20 ), Vector2( 20, -20 ), Vector2( -20, 20 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.109804 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.109804 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Background" type="CanvasLayer" parent="."]
+editor/display_folded = true
+layer = -1
+
+[node name="Camera2D" type="Camera2D" parent="Background"]
+anchor_mode = 0
+current = true
+
+[node name="BG" type="TextureRect" parent="Background/Camera2D"]
+margin_top = -1638.0
+margin_right = 614.0
+margin_bottom = 3798.0
+rect_pivot_offset = Vector2( 2.09283, 1628.1 )
+texture = ExtResource( 2 )
+stretch_mode = 2
+script = ExtResource( 3 )
+
+[node name="Anim" type="AnimationPlayer" parent="Background/Camera2D/BG"]
+autoplay = "travel"
+anims/travel = SubResource( 1 )
+anims/traver_faster = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="Background/Camera2D/BG"]
+
+[node name="CamAnim" type="AnimationPlayer" parent="Background/Camera2D"]
+playback_speed = 3.0
+anims/screenshake = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 305, 700 )
+
+[node name="Choice" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="Choices" parent="Choice" instance=ExtResource( 5 )]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="HUD" instance=ExtResource( 6 )]
+mouse_filter = 2
+
+[node name="Warning" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="ColorRect" type="ColorRect" parent="Warning"]
+margin_right = 610.0
+margin_bottom = 1080.0
+mouse_filter = 2
+color = Color( 1, 0, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Anim" type="AnimationPlayer" parent="Warning"]
+anims/warning = SubResource( 4 )
+[connection signal="crew_changed" from="Player" to="HUD/GUI" method="_on_Player_crew_changed"]
+[connection signal="goods_changed" from="Player" to="HUD/GUI" method="_on_Player_goods_changed"]
+[connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
+[connection signal="event_selected" from="Choice/Choices" to="." method="_on_Choices_event_selected"]

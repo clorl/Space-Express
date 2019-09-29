@@ -18,6 +18,11 @@ _global_script_class_icons={
 config/name="Space Express"
 config/icon="res://icon.png"
 
+[autoload]
+
+Constants="*res://Constants.tscn"
+Audio="*res://audio/Audio.tscn"
+
 [debug]
 
 gdscript/warnings/enable=false
@@ -36,8 +41,6 @@ gdscript/warnings/constant_used_as_function=false
 window/size/width=610
 window/size/height=1080
 window/size/resizable=false
-window/size/test_width=305
-window/size/test_height=540
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 

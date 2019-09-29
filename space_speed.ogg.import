@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/space_speed.ogg-e23be68097c6642b30c30efe48983250.oggstr"
+
+[deps]
+
+source_file="res://space_speed.ogg"
+dest_files=[ "res://.import/space_speed.ogg-e23be68097c6642b30c30efe48983250.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
