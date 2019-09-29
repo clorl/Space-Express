@@ -85,7 +85,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "fade"
 length = 0.6
 tracks/0/type = "value"
@@ -113,7 +113,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 1.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
@@ -244,7 +244,7 @@ color = Color( 0, 0, 0, 0.733333 )
 [node name="Score" parent="HUD/Score" instance=ExtResource( 10 )]
 
 [node name="Anim" type="AnimationPlayer" parent="HUD/Score"]
-anims/fade = SubResource( 8 )
+anims/fade = SubResource( 7 )
 
 [node name="Warning" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -259,7 +259,7 @@ __meta__ = {
 }
 
 [node name="Anim" type="AnimationPlayer" parent="Warning"]
-anims/warning = SubResource( 7 )
+anims/warning = SubResource( 8 )
 [connection signal="crew_changed" from="Player" to="HUD/GUI" method="_on_Player_crew_changed"]
 [connection signal="goods_changed" from="Player" to="HUD/GUI" method="_on_Player_goods_changed"]
 [connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
