@@ -1,5 +1,5 @@
 extends Control
-
+onready var Popup = $Popup
 signal scene_changed()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +12,7 @@ func change_scene(path, delay = 0.5):
 func _on_Play_pressed():
 	change_scene("res://ui/GUI.tscn")
 
-
 func _on_Credits_pressed():
-	$Popup.popup()
-	$Popup.visible = false
+	Popup.popup()
+	
+

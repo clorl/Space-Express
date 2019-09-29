@@ -1,14 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Menu/_fondV1.jpg" type="Texture" id=2]
 [ext_resource path="res://Menu/button.png" type="Texture" id=3]
-[ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Menu/titre.png" type="Texture" id=5]
+[ext_resource path="res://Menu/Credits.gd" type="Script" id=4]
+[ext_resource path="res://ui/SovietProgram-BoldItalic.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Menu/titre.png" type="Texture" id=6]
+[ext_resource path="res://ui/SovietProgram.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 7 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -20,6 +26,7 @@ script = ExtResource( 1 )
 [node name="Fond" type="TextureRect" parent="."]
 margin_right = 614.0
 margin_bottom = 2718.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 
 [node name="Credits" type="TextureButton" parent="."]
@@ -28,6 +35,7 @@ margin_top = 904.317
 margin_right = 538.0
 margin_bottom = 1016.32
 texture_normal = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Label2" type="Label" parent="Credits"]
 anchor_left = 0.5
@@ -42,18 +50,6 @@ custom_fonts/font = SubResource( 1 )
 text = "CREDITS"
 align = 1
 valign = 1
-
-[node name="Popup" type="Popup" parent="Credits"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Credits/Popup"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Credits/Popup"]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [node name="Play" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -87,6 +83,31 @@ margin_left = -240.242
 margin_top = 111.0
 margin_right = 301.758
 margin_bottom = 264.0
-texture = ExtResource( 5 )
+mouse_filter = 2
+texture = ExtResource( 6 )
+
+[node name="Popup" type="Popup" parent="."]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+
+[node name="ColorRect" type="ColorRect" parent="Popup"]
+margin_right = 610.0
+margin_bottom = 1080.0
+color = Color( 0, 0, 0, 0.462745 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 62.0
+margin_right = -40.0
+margin_bottom = -61.0
+custom_fonts/normal_font = SubResource( 2 )
+tab_size = 24
+text = "Texteszeoigjoizegoihzoeihgoijzeoidhngoiezidgjoizeodighnzeiodgoihzeoihdgoijhzeoihndgoizeoigdjzioegoihzg
+
+(utilise une autre police plus lisible stp mdr=)"
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
