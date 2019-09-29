@@ -34,16 +34,6 @@ func _ready():
 	choices.propose_choices(player.crew)
 	overlay_anim.play("warning")
 
-# Init HUD
-func init_gui():
-	gui._on_Player_goods_changed(player.goods, false)
-	gui._on_Player_crew_changed(player.crew, false)
-	gui._on_Player_health_changed(player.health, false)
-
-# When choice has been made
-func _on_Choices_event_selected(event):
-	execute_event(event)
-
 # Function that manages which function to call
 func execute_event(e):
 	match e:
@@ -60,6 +50,14 @@ func execute_event(e):
 			contraband()
 		c.repair:
 			repair()
+		c.graveyard:
+			graveyard()
+		c.sos:
+			sos()
+		c.cloud:
+			cloud()
+		c.treasure:
+			treasure()
 		c.nothing:
 			pass
 		_:
@@ -79,7 +77,7 @@ func execute_event(e):
 		return
 		
 	event_index += 1
-	choices.propose_choices(player.crew)
+	choices.propose_choices(player.crew, c.treasure, c.treasure)
 
 ##
 # Event functions
@@ -221,8 +219,128 @@ func pirate():
 	# Get outta here
 	instance.get_node("Sprite/Anim").play("speed_up")
 
-func stranded():
+func graveyard():
+	# Add instance
+	var instance = nodes.contraband.instance()
+	instance.global_position = Vector2(0,0)
+	instance.z_index = -1
+	add_child(instance)
+	
+	# Slow down
 	bg.slow_down(0.6)
+	yield(get_tree().create_timer(0.6), "timeout")
+	
+	# Land
+	player.anim.play("land")
+	yield(get_tree().create_timer(0.4), "timeout")
+	
+	# Player gets repaired
+	audio.play("Cash")
+	player.goods += int(rand_range(50,200))
+
+	# Player takeoff
+	yield(get_tree().create_timer(0.5), "timeout")
+	player.anim.play_backwards("land")
+	yield(get_tree().create_timer(0.3), "timeout")
+	
+	# Speed up
+	bg.speed_up(0.5)
+	instance.get_node("Sprite/Anim").play("speed_up")
+
+func sos():
+	# Add instance
+	var instance = nodes.repair.instance()
+	instance.global_position = Vector2(0,0)
+	instance.z_index = -1
+	add_child(instance)
+	
+	# Slow down
+	bg.slow_down(0.6)
+	yield(get_tree().create_timer(0.6), "timeout")
+	player.get_node("Spaceship/Reactor").emitting = false
+	player.anim.stop()
+	
+	randomize()
+	var rand = randi()%7-3
+	
+	if rand >= 0:
+		player.crew += rand
+		audio.play("Select")
+	else:
+		# Add pirate
+		var pirate = nodes.pirate.instance()
+		pirate.global_position = Vector2(0,0)
+		pirate.z_index = -1
+		add_child(pirate)
+		
+		# Slow down
+		yield(get_tree().create_timer(0.6), "timeout")
+		
+		# Get pirated
+		audio.play("Pirate")
+		player.anim.play("hurt")
+		randomize()
+		player.goods -= int(rand_range(50,100))
+		player.crew -= rand
+		yield(get_tree().create_timer(0.5), "timeout")
+		
+		# Get outta here
+		pirate.get_node("Sprite/Anim").play("speed_up")
+		
+	yield(get_tree().create_timer(0.4), "timeout")
+	
+	# Speed up
+	player.get_node("Spaceship/Reactor").emitting = true
+	player.anim.play("rumble")
+	bg.speed_up(0.5)
+	instance.get_node("Sprite/Anim").play("speed_up")
+
+func cloud():
+	randomize()
+	audio.play("Cough"+String(randi()%3+1))
+	player.crew -= randi()%4
+
+func treasure():
+	# Add instance
+	var instance = nodes.contraband.instance()
+	instance.global_position = Vector2(0,0)
+	instance.z_index = -1
+	add_child(instance)
+	
+	# Slow down
+	bg.slow_down(0.6)
+	yield(get_tree().create_timer(0.6), "timeout")
+	
+	# Land
+	player.anim.play("land")
+	yield(get_tree().create_timer(0.4), "timeout")
+	
+	# Player gets repaired
+	audio.play("Mining")
+	player.crew -= int(rand_range(0,4))
+	if player.is_stranded: return
+	
+	# Player gets money
+	yield(get_tree().create_timer(0.5), "timeout")
+	player.goods += int(rand_range(50,300))
+	audio.play("Cash")
+	
+	# Player takeoff
+	yield(get_tree().create_timer(0.5), "timeout")
+	player.anim.play_backwards("land")
+	yield(get_tree().create_timer(0.3), "timeout")
+	
+	# Speed up
+	bg.speed_up(0.5)
+	instance.get_node("Sprite/Anim").play("speed_up")
+
+##
+# Game end functions
+##
+
+func stranded():
+	if bg.get_node("Anim").playback_speed == 1:
+		bg.slow_down(0.6)
 	player.get_node("Spaceship/Reactor").emitting = false
 	player.anim.stop()
 	yield(get_tree().create_timer(1), "timeout")
@@ -240,3 +358,17 @@ func end():
 	score.popup()
 	score.get_node("Anim").play("fade")
 	score.get_node("Score").set_score(player.goods)
+
+##
+# Other functions
+##
+
+# Init HUD
+func init_gui():
+	gui._on_Player_goods_changed(player.goods, false)
+	gui._on_Player_crew_changed(player.crew, false)
+	gui._on_Player_health_changed(player.health, false)
+
+# When choice has been made
+func _on_Choices_event_selected(event):
+	execute_event(event)

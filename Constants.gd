@@ -7,7 +7,11 @@ enum {
 	pirate
 	contraband
 	repair
+	graveyard
+	sos
+	cloud
+	treasure
 	nothing
 	}
 
-var nb_events = 7
+var nb_events = 11

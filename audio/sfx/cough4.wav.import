@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cough4.wav-4ca619355e5229b052e6b4297d68d9a9.sample"
+
+[deps]
+
+source_file="res://audio/sfx/cough4.wav"
+dest_files=[ "res://.import/cough4.wav-4ca619355e5229b052e6b4297d68d9a9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
