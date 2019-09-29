@@ -1,9 +1,10 @@
 extends Control
 onready var Popup = $Popup
+
 signal scene_changed()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 	
 func change_scene(path, delay = 0.5):
 	yield(get_tree().create_timer(delay), "timeout")
@@ -21,3 +22,8 @@ func _on_Credits_pressed():
 
 func _on_Croix_pressed():
 	$Popup.visible = false
+
+
+func _on_Titre_animation_started(anim_name):
+	$Bruit.play()	
+	
