@@ -23,12 +23,24 @@ tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 2.5, 3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -0.000103095, -0.000103095 ), Vector2( -0.192579, -0.192579 ), Vector2( -0.192579, -0.192579 ), Vector2( -0.000103095, -0.000103095 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="ColorRect" type="ColorRect"]
@@ -40,6 +52,7 @@ color = Color( 0, 0, 0, 1 )
 script = ExtResource( 1 )
 
 [node name="TextureRect" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.833333 )
 position = Vector2( 299.039, 522.208 )
 rotation = -3.14159
 scale = Vector2( -0.192579, -0.192579 )
