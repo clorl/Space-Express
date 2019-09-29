@@ -136,7 +136,6 @@ __meta__ = {
 }
 
 [node name="Background" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -1
 
 [node name="Camera2D" type="Camera2D" parent="Background"]
