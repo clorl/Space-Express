@@ -128,7 +128,8 @@ func contraband():
 	# Player takeoff
 	yield(get_tree().create_timer(0.5), "timeout")
 	player.anim.play_backwards("land")
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(player.anim, "animation_finished")
+	player.anim.play("rumble")
 	
 	# Speed up
 	bg.speed_up(0.5)
@@ -157,7 +158,8 @@ func cantina():
 	
 	# Player takeoff
 	player.anim.play_backwards("land")
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(player.anim, "animation_finished")
+	player.anim.play("rumble")
 	
 	# Speed up
 	bg.speed_up(0.5)
@@ -177,6 +179,7 @@ func repair():
 	# Land
 	player.anim.play("land")
 	yield(get_tree().create_timer(0.4), "timeout")
+	player.anim.play("rumble")
 	
 	if player.goods > 0 && player.health < 100:
 		# Repair
@@ -192,7 +195,8 @@ func repair():
 	
 	# Player takeoff
 	player.anim.play_backwards("land")
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(player.anim, "animation_finished")
+	player.anim.play("rumble")
 	
 	# Speed up
 	bg.speed_up(0.5)
@@ -244,7 +248,8 @@ func graveyard():
 	# Player takeoff
 	yield(get_tree().create_timer(0.5), "timeout")
 	player.anim.play_backwards("land")
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(player.anim, "animation_finished")
+	player.anim.play("rumble")
 	
 	# Speed up
 	bg.speed_up(0.5)
@@ -260,11 +265,12 @@ func sos():
 	# Slow down
 	bg.slow_down(0.6)
 	yield(get_tree().create_timer(0.6), "timeout")
-	player.get_node("Spaceship/Reactor").emitting = false
+	for reactor in get_tree().get_nodes_in_group("reactors"):
+		reactor.emitting = false
 	player.anim.stop()
 	
 	randomize()
-	var rand = randi()%7-3
+	var rand = int(rand_range(-3,3))
 	
 	if rand >= 0:
 		player.crew += rand
@@ -284,7 +290,7 @@ func sos():
 		player.anim.play("hurt")
 		randomize()
 		player.goods -= int(rand_range(50,100))
-		player.crew -= rand
+		player.crew += rand
 		yield(get_tree().create_timer(0.5), "timeout")
 		
 		# Get outta here
@@ -293,14 +299,15 @@ func sos():
 	yield(get_tree().create_timer(0.4), "timeout")
 	
 	# Speed up
-	player.get_node("Spaceship/Reactor").emitting = true
+	for reactor in get_tree().get_nodes_in_group("reactors"):
+		reactor.emitting = true
 	player.anim.play("rumble")
 	bg.speed_up(0.5)
 	instance.get_node("Sprite/Anim").play("speed_up")
 
 func cloud():
 	# Add asteroids
-	var instance = nodes.asteroids.instance()
+	var instance = nodes.cloud.instance()
 	instance.global_position = Vector2(0,0)
 	add_child(instance)
 	
@@ -340,7 +347,8 @@ func treasure():
 	# Player takeoff
 	yield(get_tree().create_timer(0.5), "timeout")
 	player.anim.play_backwards("land")
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(player.anim, "animation_finished")
+	player.anim.play("rumble")
 	
 	# Speed up
 	bg.speed_up(0.5)
@@ -353,7 +361,8 @@ func treasure():
 func stranded():
 	if bg.get_node("Anim").playback_speed == 1:
 		bg.slow_down(0.6)
-	player.get_node("Spaceship/Reactor").emitting = false
+	for reactor in get_tree().get_nodes_in_group("reactors"):
+		reactor.emitting = false
 	player.anim.stop()
 	yield(get_tree().create_timer(1), "timeout")
 	game_over.get_node("Text").text = "YOU HAVE LOST ALL YOUR CREW.\n\nYOUR SHIP IS STRANDED IN DEEP SPACE"

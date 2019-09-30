@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://menu/aaaa.wav" type="AudioStream" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://menu/titre.png" type="Texture" id=9]
 [ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://menu/Xolonium-Regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://ui/ship-selection/ShipSelection.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -50,6 +51,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 2
@@ -132,6 +134,7 @@ playback_speed = 2.0
 anims/Credits = SubResource( 2 )
 
 [node name="Play" type="TextureButton" parent="."]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -181,7 +184,7 @@ anims/Titre = SubResource( 5 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Popup2" type="Popup" parent="CanvasLayer"]
-visible = true
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.361328
@@ -252,9 +255,23 @@ Music
 Tristan Clément
 
 "
+
+[node name="ShipPopup" type="Popup" parent="CanvasLayer"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ShipPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0.129412, 1 )
+
+[node name="ShipSelection" parent="CanvasLayer/ShipPopup" instance=ExtResource( 12 )]
 [connection signal="mouse_entered" from="Credits" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 [connection signal="mouse_entered" from="Play" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
 [connection signal="animation_finished" from="Titre2/Titre" to="." method="_on_Titre_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Popup2/Croix" to="." method="_on_Croix_pressed"]
+[connection signal="popup_hidden" from="CanvasLayer/ShipPopup/ShipSelection" to="." method="_on_ShipSelection_popup_hidden"]

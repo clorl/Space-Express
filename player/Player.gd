@@ -1,12 +1,13 @@
 extends Node2D
 
+onready var c = get_node("/root/Constants")
 onready var audio = get_node("/root/Audio")
 
 signal health_changed
 signal goods_changed
 signal crew_changed
 
-onready var anim = $Anim
+var anim
 
 var health = 100 setget set_health
 var goods = 1000 setget set_goods
@@ -19,7 +20,16 @@ export var max_goods = 9999
 export var max_crew = 10
 
 func _ready():
-	$Spaceship/Reactor.emitting = true
+	var ship
+	if c.ship:
+		ship = c.ships[c.ship].instance()
+	else: 
+		ship = c.ships[0].instance()
+	anim = ship.get_node("Anim")
+	add_child(ship)
+	
+	for reactor in get_tree().get_nodes_in_group("reactors"):
+		reactor.emitting = true
 
 
 func set_health(new_health):
