@@ -65,6 +65,18 @@ tracks/1/keys = {
 "method": "next_ship"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "prev"
@@ -94,6 +106,18 @@ tracks/1/keys = {
 "args": [  ],
 "method": "prev_ship"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -166,8 +190,8 @@ autoplay = "bounce"
 anims/bounce = SubResource( 2 )
 
 [node name="ShipBox" type="CenterContainer" parent="Select/HBox"]
-margin_left = 124.0
-margin_right = 434.0
+margin_left = 126.0
+margin_right = 436.0
 margin_bottom = 700.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Select/HBox/ShipBox"]
@@ -270,5 +294,5 @@ valign = 1
 [connection signal="pressed" from="Select/Buttons/Start" to="Select/HBox" method="_on_Start_pressed"]
 [connection signal="pressed" from="Select/Buttons/Start" to="Select/Buttons" method="_on_pressed"]
 [connection signal="mouse_entered" from="Select/Buttons/Cancel" to="Select/Buttons" method="_on_mouse_entered"]
-[connection signal="pressed" from="Select/Buttons/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="Select/Buttons/Cancel" to="Select/Buttons" method="_on_pressed"]
+[connection signal="pressed" from="Select/Buttons/Cancel" to="." method="_on_Cancel_pressed"]
