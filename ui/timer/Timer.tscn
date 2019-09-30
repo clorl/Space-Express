@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/fonts/SovietProgram.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://ui/timer/encadre_timer.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "bounce"
 loop = true
 tracks/0/type = "value"
@@ -34,23 +34,30 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -15, -15 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 80
 font_data = ExtResource( 4 )
 
-[node name="Timer" type="CenterContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Timer" type="Control"]
+anchor_right = 1.0
+margin_bottom = 149.0
 script = ExtResource( 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 442.0
-margin_bottom = 138.0
-alignment = 1
+[node name="HBoxContainer" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -220.5
+margin_top = -69.0
+margin_right = 220.5
+margin_bottom = 69.0
 
 [node name="Timer" type="TextureProgress" parent="HBoxContainer"]
-margin_right = 138.0
+margin_left = 4.0
+margin_right = 204.0
 margin_bottom = 138.0
+rect_min_size = Vector2( 200, 0 )
 max_value = 2.0
 step = 0.01
 value = 0.7
@@ -60,25 +67,25 @@ fill_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/Timer"]
 autoplay = "bounce"
-anims/bounce = SubResource( 2 )
+anims/bounce = SubResource( 1 )
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 142.0
+margin_left = 208.0
 margin_top = 29.0
-margin_right = 442.0
+margin_right = 437.0
 margin_bottom = 109.0
-rect_min_size = Vector2( 300, 0 )
-custom_fonts/font = SubResource( 1 )
-text = "2:00"
-align = 1
+custom_fonts/font = SubResource( 2 )
+text = "12:00"
+valign = 1
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Label"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -177.0
+margin_left = -186.607
 margin_top = -69.0
-margin_right = 150.5
+margin_right = 136.393
 margin_bottom = 69.0
 texture = ExtResource( 5 )
+expand = true

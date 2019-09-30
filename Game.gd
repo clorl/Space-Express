@@ -34,8 +34,8 @@ func _ready():
 	init_gui()
 	
 	# Start game
-	yield(get_tree().create_timer(2), "timeout")
-	choices.propose_choices(player.crew)
+	yield(get_tree().create_timer(3), "timeout")
+	choices.propose_choices(20)
 	overlay_anim.play("warning")
 
 # Function that manages which function to call
@@ -82,7 +82,8 @@ func execute_event(e):
 	else:
 		event_index += 1
 		evt_counter.next_point()
-		choices.propose_choices(player.crew)
+		if event_index != 2: choices.propose_choices(player.crew)
+		else: choices.propose_choices(15)
 
 ##
 # Event functions
@@ -96,7 +97,7 @@ func asteroids():
 	
 	# Wait a bit and animate
 	yield(get_tree().create_timer(0.5), "timeout")
-	player.health -= int(rand_range(5,50))
+	player.health -= int(rand_range(10,20))
 	cam_anim.play("screenshake")
 	
 	yield(get_tree().create_timer(3), "timeout")
@@ -119,12 +120,12 @@ func contraband():
 	
 	# Player gets repaired
 	audio.play("Repair")
-	player.health -= int(rand_range(5,30))
+	player.health -= int(rand_range(5,15))
 	if player.is_dead: return
 	
 	# Player gets money
 	yield(get_tree().create_timer(0.5), "timeout")
-	player.goods += int(rand_range(0,100))
+	player.goods += int(rand_range(100,150))
 	audio.play("Cash")
 	
 	# Player takeoff
@@ -154,8 +155,8 @@ func cantina():
 	
 	if player.goods > 0:
 		audio.play_pitch("Cash", 0.5)
-		player.goods -= int(rand_range(50,500))
-		player.crew += int(rand_range(0,4))
+		player.goods -= int(rand_range(100,150))
+		player.crew += int(rand_range(1,3))
 		yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player takeoff
@@ -192,7 +193,7 @@ func repair():
 		# Pay
 		yield(get_tree().create_timer(0.5), "timeout")
 		audio.play("Cash")
-		player.goods -= int(rand_range(50,700))
+		player.goods -= int(rand_range(150,200))
 		yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player takeoff
@@ -221,8 +222,8 @@ func pirate():
 	audio.play("Pirate")
 	player.anim.play("hurt")
 	randomize()
-	player.goods -= int(rand_range(50,500))
-	player.crew -= int(rand_range(0,4))
+	player.goods -= int(rand_range(50,100))
+	player.crew -= int(rand_range(0,2))
 	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Get outta here
@@ -245,7 +246,7 @@ func graveyard():
 	
 	# Player gets money
 	audio.play("Cash")
-	player.goods += int(rand_range(0,100))
+	player.goods += int(rand_range(50,100))
 
 	# Player takeoff
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -275,7 +276,8 @@ func sos():
 	var rand = int(rand_range(-1,0))
 	
 	if rand >= 0:
-		player.crew += rand
+		randomize()
+		player.crew += int(rand_range(1,2))
 		audio.play("Select")
 	else:
 		# Add pirate
@@ -291,8 +293,8 @@ func sos():
 		audio.play("Pirate")
 		player.anim.play("hurt")
 		randomize()
-		player.goods -= int(rand_range(50,300))
-		player.crew -= int(rand_range(3,5))
+		player.goods -= int(rand_range(50,100))
+		player.crew -= int(rand_range(1,2))
 		yield(get_tree().create_timer(0.5), "timeout")
 		
 		# Get outta here
@@ -338,12 +340,12 @@ func treasure():
 	
 	# Player loses crew
 	audio.play("Mining")
-	player.crew -= int(rand_range(1,4))
+	player.crew -= int(rand_range(1,3))
 	if player.is_stranded: return
 	
 	# Player gets money
 	yield(get_tree().create_timer(0.5), "timeout")
-	player.goods += int(rand_range(0,150))
+	player.goods += int(rand_range(50,150))
 	audio.play("Cash")
 	
 	# Player takeoff
