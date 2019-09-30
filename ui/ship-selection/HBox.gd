@@ -34,14 +34,12 @@ func prev_ship():
 func _on_Left_pressed():
 	if !anim.is_playing():
 		anim.play("prev")
-	else:
-		audio.stop("Blip")
+		_on_pressed()
 
 func _on_Right_pressed():
 	if !anim.is_playing():
 		anim.play("next")
-	else:
-		audio.stop("Blip")
+		_on_pressed()
 
 func _on_Start_pressed():
 	c.ship = cur

@@ -264,13 +264,11 @@ custom_fonts/font = SubResource( 7 )
 text = "CANCEL"
 align = 1
 valign = 1
-[connection signal="pressed" from="Select/HBox/LeftContainer/Left" to="Select/HBox" method="_on_pressed"]
 [connection signal="pressed" from="Select/HBox/LeftContainer/Left" to="Select/HBox" method="_on_Left_pressed"]
-[connection signal="pressed" from="Select/HBox/RightContainer/Right" to="Select/HBox" method="_on_pressed"]
 [connection signal="pressed" from="Select/HBox/RightContainer/Right" to="Select/HBox" method="_on_Right_pressed"]
 [connection signal="mouse_entered" from="Select/Buttons/Start" to="Select/Buttons" method="_on_mouse_entered"]
-[connection signal="pressed" from="Select/Buttons/Start" to="Select/Buttons" method="_on_pressed"]
 [connection signal="pressed" from="Select/Buttons/Start" to="Select/HBox" method="_on_Start_pressed"]
+[connection signal="pressed" from="Select/Buttons/Start" to="Select/Buttons" method="_on_pressed"]
 [connection signal="mouse_entered" from="Select/Buttons/Cancel" to="Select/Buttons" method="_on_mouse_entered"]
 [connection signal="pressed" from="Select/Buttons/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="pressed" from="Select/Buttons/Cancel" to="Select/Buttons" method="_on_pressed"]

@@ -23,40 +23,40 @@ script = ExtResource( 1 )
 
 [node name="Blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-bus = "SFX"
+bus = "UI"
 
 [node name="Cash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = 6.0
-bus = "SFX"
+bus = "UI"
 
 [node name="Explode" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-bus = "SFX"
+bus = "SFX2"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-bus = "SFX"
+bus = "SFX2"
 
 [node name="Pirate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-bus = "SFX"
+bus = "SFX2"
 
 [node name="Play" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-bus = "SFX"
+bus = "UI"
 
 [node name="Repair" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-bus = "SFX"
+bus = "SFX3"
 
 [node name="Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-bus = "SFX"
+bus = "UI"
 
 [node name="Warning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-bus = "SFX"
+bus = "SFX3"
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
@@ -65,21 +65,26 @@ bus = "Music"
 [node name="Cough1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -4.0
+bus = "SFX3"
 
 [node name="Cough2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -4.0
+bus = "SFX3"
 
 [node name="Cough3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -4.0
+bus = "SFX3"
 
 [node name="Cough4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 volume_db = -4.0
+bus = "SFX3"
 
 [node name="Mining" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
+bus = "SFX3"
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
