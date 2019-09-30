@@ -27,3 +27,13 @@ func _on_Titre_animation_finished(anim_name):
 
 func _on_ShipSelection_popup_hidden():
 	$CanvasLayer/ShipPopup.visible = false
+
+
+func _on_Quit_pressed():
+	sc.quit()
+	audio.play("Select")
+
+
+func _on_HowTo_pressed():
+	$CanvasLayer/Tutorial.popup()
+	audio.play("Select")

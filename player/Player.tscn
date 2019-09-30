@@ -13,10 +13,10 @@ gradient = SubResource( 1 )
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.9884 ), 0.0, -0.3522, 0, 0, Vector2( 1, 0.0281 ), -1.61742, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
+[sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
 emission_sphere_radius = 4.42
 flag_disable_z = true
@@ -30,11 +30,12 @@ orbit_velocity_random = 0.0
 damping = 100.0
 scale = 0.3
 scale_random = 0.2
-scale_curve = SubResource( 10 )
+scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
+max_goods = 99999
 
 [node name="Explosion" type="Particles2D" parent="."]
 position = Vector2( -2.68777, 4.05856 )
@@ -44,5 +45,5 @@ amount = 300
 one_shot = true
 speed_scale = 2.0
 explosiveness = 0.82
-process_material = SubResource( 11 )
+process_material = SubResource( 5 )
 texture = ExtResource( 2 )

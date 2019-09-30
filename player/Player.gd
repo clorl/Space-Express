@@ -44,6 +44,8 @@ func set_health(new_health):
 		die()
 	
 	emit_signal("health_changed", health)
+	yield(anim, "animation_finished")
+	anim.play("rumble")
 	
 func set_goods(new_goods):
 	goods = new_goods

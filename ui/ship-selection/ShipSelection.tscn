@@ -16,7 +16,7 @@
 size = 70
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "bounce"
 loop = true
 tracks/0/type = "value"
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ Vector2( 25, 325 ), Vector2( 15, 325 ), Vector2( 25, 325 ) ]
 }
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 6 )
 
@@ -41,13 +41,13 @@ resource_name = "next"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
-"transitions": PoolRealArray( 0.267943, 1.70442e-10, 0.707107, 1 ),
+"transitions": PoolRealArray( 0.267943, 3.09848e-06, 0.707107, 1 ),
 "update": 0,
 "values": [ Vector2( 126, 0 ), Vector2( -500, 0 ), Vector2( 700, 0 ), Vector2( 126, 0 ) ]
 }
@@ -66,12 +66,12 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "prev"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -163,7 +163,7 @@ stretch_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Select/HBox/LeftContainer/Left"]
 autoplay = "bounce"
-anims/bounce = SubResource( 8 )
+anims/bounce = SubResource( 2 )
 
 [node name="ShipBox" type="CenterContainer" parent="Select/HBox"]
 margin_left = 124.0
@@ -187,7 +187,7 @@ stretch_mode = 6
 margin_top = 314.0
 margin_right = 310.0
 margin_bottom = 413.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 3 )
 text = "This is the most basic ship of all. Lorem ipsum dolor sit amet lolol."
 align = 1
 valign = 1
@@ -195,7 +195,7 @@ autowrap = true
 
 [node name="Anim" type="AnimationPlayer" parent="Select/HBox/ShipBox"]
 anims/next = SubResource( 4 )
-anims/prev = SubResource( 10 )
+anims/prev = SubResource( 5 )
 
 [node name="RightContainer" type="CenterContainer" parent="Select/HBox"]
 margin_left = 438.0
@@ -264,8 +264,8 @@ custom_fonts/font = SubResource( 7 )
 text = "CANCEL"
 align = 1
 valign = 1
-[connection signal="pressed" from="Select/HBox/LeftContainer/Left" to="Select/HBox" method="_on_Left_pressed"]
 [connection signal="pressed" from="Select/HBox/LeftContainer/Left" to="Select/HBox" method="_on_pressed"]
+[connection signal="pressed" from="Select/HBox/LeftContainer/Left" to="Select/HBox" method="_on_Left_pressed"]
 [connection signal="pressed" from="Select/HBox/RightContainer/Right" to="Select/HBox" method="_on_pressed"]
 [connection signal="pressed" from="Select/HBox/RightContainer/Right" to="Select/HBox" method="_on_Right_pressed"]
 [connection signal="mouse_entered" from="Select/Buttons/Start" to="Select/Buttons" method="_on_mouse_entered"]

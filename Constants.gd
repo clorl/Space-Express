@@ -14,6 +14,8 @@ enum {
 	nothing
 	}
 
+var firs_time = true
+
 var nb_events = 11
 var ship
 

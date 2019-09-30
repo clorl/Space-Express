@@ -124,7 +124,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -151,7 +151,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.282353, 0.282353, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 2
@@ -175,7 +175,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 )
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=10]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -202,6 +202,7 @@ tracks/1/keys = {
 }
 
 [node name="Spaceship" type="Sprite"]
+position = Vector2( -2, 0.750146 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
@@ -227,6 +228,6 @@ anims/land = SubResource( 7 )
 [node name="Anim" type="AnimationPlayer" parent="."]
 autoplay = "rumble"
 playback_speed = 2.0
-anims/hurt = SubResource( 13 )
-anims/land = SubResource( 14 )
-anims/rumble = SubResource( 15 )
+anims/hurt = SubResource( 8 )
+anims/land = SubResource( 9 )
+anims/rumble = SubResource( 10 )

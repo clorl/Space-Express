@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://menu/aaaa.wav" type="AudioStream" id=2]
@@ -12,28 +12,11 @@
 [ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://menu/Xolonium-Regular.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://ui/ship-selection/ShipSelection.tscn" type="PackedScene" id=12]
+[ext_resource path="res://tutorial/Tutorial.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 8 )
-
-[sub_resource type="Animation" id=2]
-resource_name = "Credits"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 76.4478, 1351.45 ), Vector2( 88, 904.317 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "Nouvelle animation"
 
 [sub_resource type="Animation" id=4]
 resource_name = "Play"
@@ -47,7 +30,26 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 71, 1099 ), Vector2( 80, 749.881 ) ]
+"values": [ Vector2( 71, 1099 ), Vector2( 80, 550 ) ]
+}
+
+[sub_resource type="DynamicFont" id=10]
+size = 40
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "Credits"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1500 ), Vector2( 0, 700 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -102,50 +104,23 @@ mouse_filter = 2
 texture = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 296.804, 450.506 )
-
-[node name="Credits" type="TextureButton" parent="."]
-editor/display_folded = true
-margin_left = 88.0
-margin_top = 904.317
-margin_right = 538.0
-margin_bottom = 1016.32
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 6 )
-texture_hover = ExtResource( 7 )
-
-[node name="Label2" type="Label" parent="Credits"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -225.0
-margin_top = -111.0
-margin_right = 221.0
-margin_bottom = 2.0
-custom_fonts/font = SubResource( 1 )
-text = "CREDITS"
-align = 1
-valign = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Credits"]
-autoplay = "Credits"
-playback_speed = 2.0
-anims/Credits = SubResource( 2 )
+position = Vector2( 296.804, 400.361 )
 
 [node name="Play" type="TextureButton" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -225.0
-margin_top = -330.119
+margin_top = -530.0
 margin_right = 231.0
-margin_bottom = -215.119
+margin_bottom = -415.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Label" type="Label" parent="Play"]
 anchor_left = 0.5
@@ -160,14 +135,112 @@ custom_fonts/font = SubResource( 1 )
 text = "PLAY"
 align = 1
 valign = 1
+clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Play"]
 autoplay = "Play"
 playback_speed = 2.0
-"anims/Nouvelle animation" = SubResource( 3 )
 anims/Play = SubResource( 4 )
 
+[node name="Control" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -380.0
+
+[node name="HowTo" type="TextureButton" parent="Control"]
+editor/display_folded = true
+margin_right = 610.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Control/HowTo"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -227.0
+margin_top = -112.0
+margin_right = 213.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 10 )
+text = "HOW TO PLAY"
+align = 1
+valign = 1
+
+[node name="Credits" type="TextureButton" parent="Control"]
+editor/display_folded = true
+margin_top = 104.0
+margin_right = 610.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 100 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label2" type="Label" parent="Control/Credits"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -225.0
+margin_top = -111.0
+margin_right = 221.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 1 )
+text = "CREDITS"
+align = 1
+valign = 1
+
+[node name="Quit" type="TextureButton" parent="Control"]
+editor/display_folded = true
+margin_top = 208.0
+margin_right = 610.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 0, 100 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label2" type="Label" parent="Control/Quit"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -225.0
+margin_top = -111.0
+margin_right = 221.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 1 )
+text = "QUIT"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+autoplay = "Credits"
+playback_speed = 2.0
+anims/Credits = SubResource( 11 )
+
 [node name="Titre2" type="TextureRect" parent="."]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -249.542
@@ -268,10 +341,18 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0.129412, 1 )
 
 [node name="ShipSelection" parent="CanvasLayer/ShipPopup" instance=ExtResource( 12 )]
-[connection signal="mouse_entered" from="Credits" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
+
+[node name="Tutorial" parent="CanvasLayer" instance=ExtResource( 13 )]
+visible = false
+popup_exclusive = true
 [connection signal="mouse_entered" from="Play" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="mouse_entered" from="Control/HowTo" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Control/HowTo" to="." method="_on_HowTo_pressed"]
+[connection signal="mouse_entered" from="Control/Credits" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Control/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="mouse_entered" from="Control/Quit" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Control/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="animation_finished" from="Titre2/Titre" to="." method="_on_Titre_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Popup2/Croix" to="." method="_on_Croix_pressed"]
 [connection signal="popup_hidden" from="CanvasLayer/ShipPopup/ShipSelection" to="." method="_on_ShipSelection_popup_hidden"]

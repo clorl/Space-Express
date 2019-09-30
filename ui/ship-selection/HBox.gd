@@ -26,7 +26,8 @@ func next_ship():
 
 func prev_ship():
 	cur -= 1
-	cur = abs(cur)%c.ships.size()
+	if cur < 0:
+		cur = c.ships.size()-1
 	desc_label.text = c.ships_descs[cur]
 	img.texture = c.ships_images[cur]
 
