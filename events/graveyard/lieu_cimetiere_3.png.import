@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lieu_planète_trésor_1.png-cd35aa27b2030f401249b3d87b9843a8.stex"
+path="res://.import/lieu_cimetiere_3.png-8b8d4e76ce932245c4ee84726cd79f51.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://events/treasure/lieu_planète_trésor_1.png"
-dest_files=[ "res://.import/lieu_planète_trésor_1.png-cd35aa27b2030f401249b3d87b9843a8.stex" ]
+source_file="res://events/graveyard/lieu_cimetiere_3.png"
+dest_files=[ "res://.import/lieu_cimetiere_3.png-8b8d4e76ce932245c4ee84726cd79f51.stex" ]
 
 [params]
 

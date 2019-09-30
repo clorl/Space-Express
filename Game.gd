@@ -24,7 +24,8 @@ const nodes = {
 	"pirate": preload("res://events/pirate/Pirate.tscn"),
 	"cloud": preload("res://events/cloud/Cloud.tscn"),
 	"graveyard": preload("res://events/graveyard/Graveyard.tscn"),
-	"treasure": preload("res://events/treasure/Treasure.tscn")
+	"treasure": preload("res://events/treasure/Treasure.tscn"),
+	"sos": preload("res://events/sos/Sos.tscn")
 	}
 
 func _ready():
@@ -43,7 +44,7 @@ func execute_event(e):
 	match e:
 		c.unknown:
 			randomize()
-			execute_event(int(rand_range(1,c.nb_events-1)))
+			var rnd_event = randi()%c.treasure+1
 		c.asteroids:
 			asteroids()
 		c.cantina:
@@ -63,8 +64,6 @@ func execute_event(e):
 		c.treasure:
 			treasure()
 		c.nothing:
-			pass
-		_:
 			pass
 	yield(get_tree().create_timer(2), "timeout")
 	
@@ -97,7 +96,7 @@ func asteroids():
 	
 	# Wait a bit and animate
 	yield(get_tree().create_timer(0.5), "timeout")
-	player.health -= int(rand_range(10,20))
+	player.health -= int(rand_range(25,35))
 	cam_anim.play("screenshake")
 	
 	yield(get_tree().create_timer(3), "timeout")
@@ -116,16 +115,16 @@ func contraband():
 	
 	# Land
 	player.anim.play("land")
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player gets repaired
 	audio.play("Repair")
-	player.health -= int(rand_range(5,15))
+	player.health -= int(rand_range(25,30))
 	if player.is_dead: return
 	
 	# Player gets money
 	yield(get_tree().create_timer(0.5), "timeout")
-	player.goods += int(rand_range(100,150))
+	player.goods += int(rand_range(25,75))
 	audio.play("Cash")
 	
 	# Player takeoff
@@ -151,12 +150,12 @@ func cantina():
 	
 	# Land
 	player.anim.play("land")
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	if player.goods > 0:
 		audio.play_pitch("Cash", 0.5)
-		player.goods -= int(rand_range(100,150))
-		player.crew += int(rand_range(1,3))
+		player.goods -= int(rand_range(200,250))
+		player.crew += int(rand_range(0,2))
 		yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player takeoff
@@ -181,19 +180,18 @@ func repair():
 	
 	# Land
 	player.anim.play("land")
-	yield(get_tree().create_timer(0.4), "timeout")
-	player.anim.play("rumble")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	if player.goods > 0 && player.health < 100:
 		# Repair
-		player.health += int(rand_range(5,20))
+		player.health += int(rand_range(10,20))
 		audio.play("Repair")
 		audio.play("Select")
 		
 		# Pay
 		yield(get_tree().create_timer(0.5), "timeout")
 		audio.play("Cash")
-		player.goods -= int(rand_range(150,200))
+		player.goods -= int(rand_range(200,250))
 		yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player takeoff
@@ -213,10 +211,7 @@ func pirate():
 	add_child(instance)
 	
 	# Slow down
-	yield(get_tree().create_timer(0.6), "timeout")
-	
-	# Land
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Get pirated
 	audio.play("Pirate")
@@ -242,11 +237,11 @@ func graveyard():
 	
 	# Land
 	player.anim.play("land")
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player gets money
 	audio.play("Cash")
-	player.goods += int(rand_range(50,100))
+	player.goods += int(rand_range(25,75))
 
 	# Player takeoff
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -260,25 +255,25 @@ func graveyard():
 
 func sos():
 	# Add instance
-	var instance = nodes.repair.instance()
+	var instance = nodes.sos.instance()
 	instance.global_position = Vector2(0,0)
 	instance.z_index = -1
 	add_child(instance)
 	
 	# Slow down
 	bg.slow_down(0.6)
-	yield(get_tree().create_timer(0.6), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	for reactor in get_tree().get_nodes_in_group("reactors"):
 		reactor.emitting = false
 	player.anim.stop()
 	
 	randomize()
-	var rand = int(rand_range(-1,0))
+	var rand = randi()%2
 	
-	if rand >= 0:
+	if rand == 0:
 		randomize()
-		player.crew += int(rand_range(1,2))
-		audio.play("Select")
+		player.crew += randi()%2+1
+		audio.play("Play")
 	else:
 		# Add pirate
 		var pirate = nodes.pirate.instance()
@@ -294,13 +289,13 @@ func sos():
 		player.anim.play("hurt")
 		randomize()
 		player.goods -= int(rand_range(50,100))
-		player.crew -= int(rand_range(1,2))
+		player.crew -= int(rand_range(2,4))
 		yield(get_tree().create_timer(0.5), "timeout")
 		
 		# Get outta here
 		pirate.get_node("Sprite/Anim").play("speed_up")
 		
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Speed up
 	for reactor in get_tree().get_nodes_in_group("reactors"):
@@ -317,7 +312,7 @@ func cloud():
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	randomize()
-	audio.play("Cough"+String(randi()%3+1))
+	audio.play("Cough"+String(randi()%4+1))
 	player.crew -= randi()%3+1
 	
 	yield(get_tree().create_timer(3), "timeout")
@@ -336,16 +331,16 @@ func treasure():
 	
 	# Land
 	player.anim.play("land")
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	# Player loses crew
 	audio.play("Mining")
-	player.crew -= int(rand_range(1,3))
+	player.crew -= int(rand_range(2,4))
 	if player.is_stranded: return
 	
 	# Player gets money
 	yield(get_tree().create_timer(0.5), "timeout")
-	player.goods += int(rand_range(50,150))
+	player.goods += int(rand_range(50,100))
 	audio.play("Cash")
 	
 	# Player takeoff
@@ -368,7 +363,7 @@ func stranded():
 	for reactor in get_tree().get_nodes_in_group("reactors"):
 		reactor.emitting = false
 	player.anim.stop()
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	game_over.get_node("Text").text = "YOU HAVE LOST ALL YOUR CREW.\n\nYOUR SHIP IS STRANDED IN DEEP SPACE"
 	game_over.popup()
 	game_over.get_node("AnimationPlayer").play("fade_in")

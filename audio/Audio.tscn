@@ -59,6 +59,7 @@ stream = ExtResource( 10 )
 bus = "SFX3"
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 11 )
 bus = "Music"
 

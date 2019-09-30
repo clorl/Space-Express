@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lieu_cimetière_2.png-1f1df5b6b47e827e3b1b8376d7d56275.stex"
+path="res://.import/lieu_cimetire_4.png-88fd7423d12f7a386d7b0852b65bd95d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://events/graveyard/lieu_cimetière_2.png"
-dest_files=[ "res://.import/lieu_cimetière_2.png-1f1df5b6b47e827e3b1b8376d7d56275.stex" ]
+source_file="res://events/graveyard/lieu_cimetire_4.png"
+dest_files=[ "res://.import/lieu_cimetire_4.png-88fd7423d12f7a386d7b0852b65bd95d.stex" ]
 
 [params]
 

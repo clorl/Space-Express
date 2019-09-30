@@ -1,5 +1,6 @@
 extends TextureButton
 
+onready var c = get_node("/root/Constants")
 onready var audio = get_node("/root/Audio")
 onready var icon = $Sprite
 onready var indicator = $Sprite/Indicators
@@ -16,7 +17,7 @@ func set_event(e):
 	event = e
 	
 	icon.frame = e
-	if e == 6: 
+	if e == c.nothing: 
 		icon.frame = 0
 		
 	indicator.frame = icon.frame

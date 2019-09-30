@@ -22,7 +22,7 @@ func propose_choices(t, e1=false, e2=false):
 	reset()
 	if !e1 || !e2:
 		e1 = generate_event()
-		e2 = generate_event()
+		e2 = generate_event(e1)
 	set_events(e1, e2)
 	
 	set_time(t)
@@ -69,32 +69,10 @@ func _on_Timer_timeout():
 	else:
 		l_button._on_ChoiceButton_pressed()
 
-func generate_event():
+func generate_event(pe=-1):
 	var e
-	
 	randomize()
-	var p = rand_range(0,100)
-	
-	if p <= 12:
-		e = c.unknown
-	elif p <= 26:
-		e = c.asteroids
-	elif p <= 33:
-		e = c.cantina
-	elif p <= 45:
-		e = c.pirate
-	elif p <= 55:
-		e = c.contraband
-	elif p <= 62:
-		e = c.repair
-	elif p <= 69:
-		e = c.graveyard
-	elif p <= 81:
-		e = c.sos
-	elif p <= 93:
-		e = c.cloud
-	elif p <= 100:
-		e = c.treasure
-		
-	
+	e = randi()%(c.nb_events-1)
+	while !(pe != e || e == c.unknown):
+		e = int(rand_range(0,c.nb_events-1))
 	return e

@@ -16,16 +16,15 @@
 [ext_resource path="res://ui/button_click.png" type="Texture" id=14]
 [ext_resource path="res://ui/button_survol.png" type="Texture" id=15]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "click"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect:rect_size")
@@ -64,7 +63,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.631373, 0.631373, 0.631373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.631373, 0.631373, 0.631373, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect:rect_size")
@@ -91,11 +90,11 @@ tracks/1/keys = {
 "values": [ Vector2( 10.5, 10.5 ), Vector2( -5, -5 ), Vector2( 10.5, 10.5 ) ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=5]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 55
 font_data = ExtResource( 11 )
 
@@ -114,39 +113,36 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-anchor_right = 1.0
-margin_left = 88.0
-margin_top = 40.0
-margin_right = -108.0
-margin_bottom = 193.0
-custom_fonts/font = SubResource( 3 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -207.0
+margin_top = 30.0
+margin_right = 207.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 1 )
 text = "You work for SPACE EXPRESS, the fastest delivery service IN THE GALAXY"
 align = 1
 autowrap = true
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Label2" type="Label" parent="."]
-anchor_right = 1.0
-margin_left = 37.0
-margin_top = 180.0
-margin_right = -37.0
-margin_bottom = 392.0
-custom_fonts/font = SubResource( 4 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -268.0
+margin_top = 160.0
+margin_right = 268.0
+margin_bottom = 372.0
+custom_fonts/font = SubResource( 2 )
 text = "BRING THE MERCHANDISE TO YOUR CLIENT"
 align = 1
 autowrap = true
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="LButton" type="TextureButton" parent="."]
-editor/display_folded = true
-margin_left = 30.4
-margin_top = 310.0
-margin_right = 330.4
-margin_bottom = 551.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 40.0
+margin_top = -230.0
+margin_right = 340.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 300, 200 )
 rect_scale = Vector2( 0.7, 0.7 )
 mouse_default_cursor_shape = 2
@@ -188,16 +184,17 @@ __meta__ = {
 
 [node name="Anim" type="AnimationPlayer" parent="LButton"]
 autoplay = "idle"
-anims/click = SubResource( 1 )
-anims/idle = SubResource( 2 )
+anims/click = SubResource( 3 )
+anims/idle = SubResource( 4 )
 
 [node name="Label6" type="Label" parent="."]
+anchor_top = 0.5
 anchor_right = 1.0
-margin_left = 248.0
-margin_top = 320.0
-margin_right = -27.0
-margin_bottom = 473.0
-custom_fonts/font = SubResource( 6 )
+anchor_bottom = 0.5
+margin_left = 260.0
+margin_top = -260.0
+margin_bottom = -19.0
+custom_fonts/font = SubResource( 5 )
 text = "During your trip, random events will pop up : they might help or hurt you. 
 Choose wisely, but FAST !"
 valign = 1
@@ -263,7 +260,7 @@ margin_right = 151.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 305, 0 )
 rect_pivot_offset = Vector2( 150, 26 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "1000$"
 align = 1
 valign = 1
@@ -274,7 +271,7 @@ margin_left = 248.0
 margin_top = 320.0
 margin_right = -27.0
 margin_bottom = 473.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Bring enough merchandise to the client for them to be satisfied."
 valign = 1
 autowrap = true
@@ -295,7 +292,7 @@ margin_left = 248.0
 margin_top = 473.0
 margin_right = -27.0
 margin_bottom = 626.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Be careful not to destroy your spaceship."
 valign = 1
 autowrap = true
@@ -306,20 +303,25 @@ margin_left = 248.0
 margin_top = 610.0
 margin_right = -27.0
 margin_bottom = 763.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Your crew is important ! The less crew you have left, the less time to react."
 valign = 1
 autowrap = true
 
 [node name="Quit" type="TextureButton" parent="."]
-margin_top = 970.0
-margin_right = 610.0
-margin_bottom = 1050.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -90.0
+margin_bottom = -10.0
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 14 )
 texture_hover = ExtResource( 15 )
 expand = true
 stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Label7" type="Label" parent="Quit"]
 anchor_left = 0.5
@@ -330,7 +332,7 @@ margin_left = -305.0
 margin_top = -40.0
 margin_right = 305.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "BACK"
 align = 1
 valign = 1

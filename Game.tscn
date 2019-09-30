@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://_fondV1.jpg" type="Texture" id=2]
@@ -7,10 +7,15 @@
 [ext_resource path="res://ui/choices/Choices.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/event_counter/EventCounter.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/fonts/SovietProgram.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://ui/gui/GameOverMenu.tscn" type="PackedScene" id=10]
-[ext_resource path="res://ui/score/Score.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/pause.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/SovietProgram.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/SovietProgram-Bold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://ui/gui/GameOverMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/score/Score.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/Pause.gd" type="Script" id=13]
+[ext_resource path="res://ui/button.png" type="Texture" id=14]
+[ext_resource path="res://ui/button_click.png" type="Texture" id=15]
+[ext_resource path="res://ui/button_survol.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "travel"
@@ -64,11 +69,11 @@ tracks/0/keys = {
 
 [sub_resource type="DynamicFont" id=4]
 size = 30
-font_data = ExtResource( 8 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 60
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "fade_in"
@@ -114,6 +119,10 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=9]
+size = 60
+font_data = ExtResource( 9 )
+
 [sub_resource type="Animation" id=8]
 length = 1.3
 tracks/0/type = "value"
@@ -143,12 +152,11 @@ layer = -1
 [node name="Camera2D" type="Camera2D" parent="Background"]
 z_index = -2
 anchor_mode = 0
-current = true
 
 [node name="BG" type="TextureRect" parent="Background/Camera2D"]
 margin_top = -1638.0
 margin_right = 614.0
-margin_bottom = 3798.0
+margin_bottom = 9234.0
 rect_pivot_offset = Vector2( 2.09283, 1628.1 )
 texture = ExtResource( 2 )
 stretch_mode = 2
@@ -176,16 +184,27 @@ editor/display_folded = true
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="HUD" instance=ExtResource( 6 )]
-margin_top = -50.0
-margin_bottom = 1034.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_right = 0.0
+margin_bottom = -42.0
 mouse_filter = 2
 
 [node name="EventCounter" parent="HUD/GUI" instance=ExtResource( 7 )]
 show_behind_parent = true
-margin_top = 50.0
-margin_bottom = 50.0
+margin_top = -25.0
+margin_bottom = 42.0
 mouse_filter = 2
 evt_number = 25
+
+[node name="PauseButton" type="TextureButton" parent="HUD/GUI"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 70.0
+margin_bottom = 70.0
+texture_normal = ExtResource( 8 )
+stretch_mode = 6
 
 [node name="GameOver" type="Popup" parent="HUD"]
 editor/display_folded = true
@@ -232,7 +251,7 @@ text = "gAME OVER"
 align = 1
 autowrap = true
 
-[node name="GameOverMenu" parent="HUD/GameOver" instance=ExtResource( 10 )]
+[node name="GameOverMenu" parent="HUD/GameOver" instance=ExtResource( 11 )]
 mouse_default_cursor_shape = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/GameOver"]
@@ -251,10 +270,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.733333 )
 
-[node name="Score" parent="HUD/Score" instance=ExtResource( 11 )]
+[node name="Score" parent="HUD/Score" instance=ExtResource( 12 )]
 
 [node name="Anim" type="AnimationPlayer" parent="HUD/Score"]
 anims/fade = SubResource( 7 )
+
+[node name="Pause" type="Popup" parent="HUD"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = -883.0
+margin_right = 89.0
+margin_bottom = 883.0
+color = Color( 0, 0, 0, 0.662745 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -305.0
+margin_top = -540.0
+margin_right = 305.0
+margin_bottom = 540.0
+alignment = 1
+
+[node name="Continue" type="TextureButton" parent="HUD/Pause/VBoxContainer"]
+editor/display_folded = true
+margin_top = 338.0
+margin_right = 610.0
+margin_bottom = 538.0
+rect_min_size = Vector2( 0, 200 )
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 16 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HUD/Pause/VBoxContainer/Continue"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -305.0
+margin_top = -150.0
+margin_right = 305.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 9 )
+text = "CONTINUE"
+align = 1
+valign = 1
+
+[node name="Quit" type="TextureButton" parent="HUD/Pause/VBoxContainer"]
+editor/display_folded = true
+margin_top = 542.0
+margin_right = 610.0
+margin_bottom = 742.0
+rect_min_size = Vector2( 0, 200 )
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 16 )
+expand = true
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="HUD/Pause/VBoxContainer/Quit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -305.0
+margin_top = -30.0
+margin_right = 305.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 9 )
+text = "MENU"
+align = 1
+valign = 1
 
 [node name="Warning" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -274,3 +371,8 @@ anims/warning = SubResource( 8 )
 [connection signal="goods_changed" from="Player" to="HUD/GUI" method="_on_Player_goods_changed"]
 [connection signal="health_changed" from="Player" to="HUD/GUI" method="_on_Player_health_changed"]
 [connection signal="event_selected" from="Choice/Choices" to="." method="_on_Choices_event_selected"]
+[connection signal="pressed" from="HUD/GUI/PauseButton" to="HUD/Pause" method="_on_PauseButton_pressed"]
+[connection signal="mouse_entered" from="HUD/Pause/VBoxContainer/Continue" to="HUD/Pause" method="blip"]
+[connection signal="pressed" from="HUD/Pause/VBoxContainer/Continue" to="HUD/Pause" method="_on_Continue_pressed"]
+[connection signal="mouse_entered" from="HUD/Pause/VBoxContainer/Quit" to="HUD/Pause" method="blip"]
+[connection signal="pressed" from="HUD/Pause/VBoxContainer/Quit" to="HUD/Pause" method="_on_Quit_pressed"]
