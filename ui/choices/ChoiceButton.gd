@@ -11,7 +11,6 @@ func _on_ChoiceButton_pressed():
 	$Anim.play("click")
 	audio.play("Select")
 	emit_signal("clicked", event)
-	print(event)
 
 func set_event(e):
 	event = e

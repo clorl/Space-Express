@@ -135,6 +135,7 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
+event_number = 25
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -184,7 +185,7 @@ show_behind_parent = true
 margin_top = 50.0
 margin_bottom = 50.0
 mouse_filter = 2
-evt_number = 15
+evt_number = 25
 
 [node name="GameOver" type="Popup" parent="HUD"]
 editor/display_folded = true

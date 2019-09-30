@@ -43,7 +43,7 @@ func execute_event(e):
 	match e:
 		c.unknown:
 			randomize()
-			execute_event(int(rand_range(1,c.nb_events-2)))
+			execute_event(int(rand_range(1,c.nb_events-1)))
 		c.asteroids:
 			asteroids()
 		c.cantina:
@@ -72,17 +72,17 @@ func execute_event(e):
 	if player.is_stranded:
 		stranded()
 		return
-	if player.is_dead:
+	elif player.is_dead:
 		dead()
 		return
 	# If game is finished
-	if event_index == event_number:
+	elif event_index == event_number:
 		end()
 		return
-		
-	event_index += 1
-	evt_counter.next_point()
-	choices.propose_choices(player.crew)
+	else:
+		event_index += 1
+		evt_counter.next_point()
+		choices.propose_choices(player.crew)
 
 ##
 # Event functions
