@@ -5,10 +5,10 @@ onready var audio = get_node("/root/Audio")
 onready var sc = get_node("/root/SceneChanger")
 
 func _ready():
-	pass
+	audio.play("MenuMusic")
 
 func _on_Play_pressed():
-	sc.change_scene("res://Game.tscn", 0.1)
+	$CanvasLayer/ShipPopup.popup()
 	audio.play("Select")
 
 func _on_Credits_pressed():
@@ -24,3 +24,16 @@ func _on_mouse_entered():
 
 func _on_Titre_animation_finished(anim_name):
 	audio.play("Explode")
+
+func _on_ShipSelection_popup_hidden():
+	$CanvasLayer/ShipPopup.visible = false
+
+
+func _on_Quit_pressed():
+	sc.quit()
+	audio.play("Select")
+
+
+func _on_HowTo_pressed():
+	$CanvasLayer/Tutorial.popup()
+	audio.play("Select")
